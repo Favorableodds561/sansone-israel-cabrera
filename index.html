@@ -1,0 +1,1272 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ask For Israel — Auto Expert | Sansone Auto Mall</title>
+<meta name="description" content="Ask For Israel Cabrera — Your trusted auto expert at Sansone Auto Mall. Access to 9 brands. Bad credit welcome. Free consultation.">
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Barlow:ital,wght@0,300;0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --navy:    #0B1E3D;
+  --navy-mid:#112651;
+  --navy-lt: #1A3568;
+  --gold:    #C9963A;
+  --gold-lt: #E8B85A;
+  --gold-pale:#F5E6C8;
+  --red:     #C0192B;
+  --red-lt:  #E8203A;
+  --white:   #FFFFFF;
+  --off-white:#F8F6F2;
+  --gray:    #7A8499;
+  --gray-lt: #C4CAD6;
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: 'Barlow', sans-serif;
+  background: var(--white);
+  color: var(--navy);
+  overflow-x: hidden;
+}
+
+@keyframes fadeUp   { from { opacity:0; transform:translateY(28px); } to { opacity:1; transform:translateY(0); } }
+@keyframes fadeIn   { from { opacity:0; } to { opacity:1; } }
+@keyframes shimmer  { 0%{background-position:-400px 0} 100%{background-position:400px 0} }
+@keyframes pulse    { 0%,100%{ box-shadow:0 0 0 3px rgba(192,25,43,.2); } 50%{ box-shadow:0 0 0 8px rgba(192,25,43,.07); } }
+@keyframes float    { 0%,100%{ transform:translateY(0); } 50%{ transform:translateY(-8px); } }
+
+/* ── TOP ALERT BAR ── */
+.alert-bar {
+  background: var(--red);
+  color: var(--white);
+  text-align: center;
+  padding: 10px 20px;
+  font-family: 'Oswald', sans-serif;
+  font-size: 14px;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+}
+.alert-bar a { color: var(--gold-lt); text-decoration: none; font-weight: 600; }
+
+/* ── NAV ── */
+nav {
+  background: var(--navy);
+  padding: 0 5%;
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: center;
+  height: 76px;
+  position: sticky;
+  top: 0;
+  z-index: 200;
+  border-bottom: 3px solid var(--gold);
+}
+.nav-links-wrap { display: flex; justify-content: flex-start; }
+.nav-cta-wrap { display: flex; justify-content: flex-end; }
+
+.nav-logo {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.nav-logo-img {
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid var(--gold);
+}
+
+.nav-logo-text { display: flex; flex-direction: column; line-height: 1.1; }
+.nav-logo-ask  { font-size: 11px; color: var(--gold); letter-spacing: .18em; text-transform: uppercase; font-weight: 500; }
+.nav-logo-name { font-family: 'Oswald', sans-serif; font-size: 22px; color: var(--white); font-weight: 700; letter-spacing: .04em; }
+
+.nav-links { display: flex; gap: 28px; list-style: none; }
+.nav-links a { color: var(--gray-lt); text-decoration: none; font-size: 14px; font-weight: 500; letter-spacing: .04em; text-transform: uppercase; transition: color .2s; }
+.nav-links a:hover { color: var(--gold); }
+
+.nav-cta {
+  background: var(--red);
+  color: var(--white);
+  padding: 11px 24px;
+  font-family: 'Oswald', sans-serif;
+  font-size: 15px;
+  font-weight: 600;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  text-decoration: none;
+  border: 2px solid var(--red);
+  transition: all .2s;
+}
+.nav-cta:hover { background: transparent; color: var(--red); border-color: var(--red); }
+
+/* ── BRAND LOGO BAR ── */
+.brand-bar {
+  background: var(--off-white);
+  border-bottom: 2px solid var(--gray-lt);
+  padding: 14px 5%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0;
+  overflow: hidden;
+}
+
+.brand-bar-label {
+  font-family: 'Oswald', sans-serif;
+  font-size: 12px;
+  color: var(--gray);
+  letter-spacing: .15em;
+  text-transform: uppercase;
+  white-space: nowrap;
+  padding-right: 24px;
+  border-right: 1px solid var(--gray-lt);
+  margin-right: 24px;
+}
+
+.brand-logos {
+  display: flex;
+  align-items: center;
+  gap: 28px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.brand-logo-item {
+  font-family: 'Oswald', sans-serif;
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--navy);
+  letter-spacing: .06em;
+  text-transform: uppercase;
+  padding: 4px 12px;
+  border: 1.5px solid var(--gray-lt);
+  transition: all .2s;
+  cursor: default;
+}
+.brand-logo-item:hover { border-color: var(--gold); color: var(--gold); }
+
+/* ── HERO ── */
+.hero {
+  background: var(--navy);
+  min-height: 88vh;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Diagonal red slash */
+.hero::before {
+  content: '';
+  position: absolute;
+  top: 0; right: 35%;
+  width: 6px;
+  height: 100%;
+  background: linear-gradient(180deg, var(--gold), var(--red));
+  transform: skewX(-4deg);
+  opacity: .6;
+  z-index: 1;
+}
+
+/* Stars background pattern */
+.hero::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: radial-gradient(circle, rgba(255,255,255,.04) 1px, transparent 1px);
+  background-size: 32px 32px;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.hero-left {
+  padding: 80px 5% 80px 8%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  position: relative;
+  z-index: 2;
+}
+
+.hero-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 24px;
+  animation: fadeUp .5s ease forwards;
+  opacity: 0;
+}
+
+.eyebrow-badge {
+  background: var(--red);
+  color: var(--white);
+  font-family: 'Oswald', sans-serif;
+  font-size: 11px;
+  letter-spacing: .2em;
+  text-transform: uppercase;
+  padding: 5px 12px;
+  font-weight: 600;
+}
+
+.eyebrow-tag {
+  font-size: 13px;
+  color: var(--gold-lt);
+  letter-spacing: .1em;
+  font-weight: 500;
+}
+
+.hero-ask {
+  font-family: 'Oswald', sans-serif;
+  font-size: clamp(20px, 2.5vw, 28px);
+  color: var(--gold);
+  letter-spacing: .25em;
+  text-transform: uppercase;
+  font-weight: 400;
+  margin-bottom: 4px;
+  animation: fadeUp .5s ease .1s forwards;
+  opacity: 0;
+}
+
+.hero-name {
+  font-family: 'Oswald', sans-serif;
+  font-size: clamp(56px, 7vw, 96px);
+  color: var(--white);
+  font-weight: 700;
+  line-height: .95;
+  letter-spacing: .02em;
+  text-transform: uppercase;
+  margin-bottom: 6px;
+  animation: fadeUp .5s ease .15s forwards;
+  opacity: 0;
+}
+
+.hero-name span { color: var(--gold); }
+
+.hero-title-tag {
+  display: inline-block;
+  background: var(--gold);
+  color: var(--navy);
+  font-family: 'Oswald', sans-serif;
+  font-size: clamp(14px, 1.8vw, 20px);
+  font-weight: 600;
+  letter-spacing: .15em;
+  text-transform: uppercase;
+  padding: 8px 20px;
+  margin-bottom: 32px;
+  animation: fadeUp .5s ease .2s forwards;
+  opacity: 0;
+}
+
+.hero-tagline {
+  font-size: clamp(18px, 2.2vw, 24px);
+  color: var(--white);
+  font-weight: 300;
+  line-height: 1.4;
+  margin-bottom: 8px;
+  animation: fadeUp .5s ease .25s forwards;
+  opacity: 0;
+}
+
+.hero-tagline strong { color: var(--gold); font-weight: 600; }
+
+.hero-sub {
+  font-size: 16px;
+  color: var(--gray-lt);
+  line-height: 1.6;
+  margin-bottom: 40px;
+  max-width: 480px;
+  animation: fadeUp .5s ease .3s forwards;
+  opacity: 0;
+}
+
+.hero-btns {
+  display: flex;
+  gap: 14px;
+  flex-wrap: wrap;
+  margin-bottom: 52px;
+  animation: fadeUp .5s ease .35s forwards;
+  opacity: 0;
+}
+
+.btn-red {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--red);
+  color: var(--white);
+  font-family: 'Oswald', sans-serif;
+  font-size: 16px;
+  font-weight: 600;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  padding: 16px 32px;
+  text-decoration: none;
+  border: 2px solid var(--red);
+  transition: all .2s;
+}
+.btn-red:hover { background: transparent; color: var(--red); }
+
+.btn-gold-outline {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: transparent;
+  color: var(--gold);
+  font-family: 'Oswald', sans-serif;
+  font-size: 16px;
+  font-weight: 600;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  padding: 16px 32px;
+  text-decoration: none;
+  border: 2px solid var(--gold);
+  transition: all .2s;
+}
+.btn-gold-outline:hover { background: var(--gold); color: var(--navy); }
+
+.hero-stats {
+  display: flex;
+  gap: 36px;
+  padding-top: 32px;
+  border-top: 1px solid rgba(255,255,255,.1);
+  animation: fadeUp .5s ease .45s forwards;
+  opacity: 0;
+}
+
+.stat { display: flex; flex-direction: column; }
+.stat-n { font-family: 'Oswald', sans-serif; font-size: 36px; font-weight: 700; color: var(--gold); line-height: 1; }
+.stat-l { font-size: 12px; color: var(--gray); text-transform: uppercase; letter-spacing: .08em; margin-top: 4px; }
+
+/* HERO RIGHT */
+.hero-right {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.hero-photo-wrap {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+}
+
+.hero-photo {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center top;
+  display: block;
+  animation: fadeIn .8s ease .3s forwards;
+  opacity: 0;
+}
+
+/* Gold frame accents */
+.hero-photo-wrap::before {
+  content: '';
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  height: 5px;
+  background: linear-gradient(90deg, var(--gold), var(--red), var(--gold));
+  z-index: 3;
+}
+
+/* Shield badge overlay */
+.hero-shield {
+  position: absolute;
+  bottom: 32px;
+  left: -24px;
+  background: var(--navy);
+  border: 3px solid var(--gold);
+  padding: 16px 22px;
+  z-index: 4;
+  box-shadow: 0 12px 40px rgba(0,0,0,.5);
+  animation: fadeUp .5s ease .6s forwards;
+  opacity: 0;
+}
+
+.shield-stars {
+  color: var(--gold);
+  font-size: 12px;
+  letter-spacing: 3px;
+  margin-bottom: 6px;
+}
+
+.shield-text {
+  font-family: 'Oswald', sans-serif;
+  font-size: 13px;
+  color: var(--white);
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  line-height: 1.3;
+}
+
+.shield-text span { color: var(--gold); font-size: 18px; display: block; }
+
+/* PHONE BADGE */
+.hero-phone-badge {
+  position: absolute;
+  top: 40px;
+  left: -20px;
+  background: var(--red);
+  color: var(--white);
+  padding: 12px 18px;
+  z-index: 4;
+  animation: fadeUp .5s ease .7s forwards;
+  opacity: 0;
+  box-shadow: 0 8px 24px rgba(192,25,43,.4);
+}
+
+.phone-badge-label { font-size: 10px; letter-spacing: .15em; text-transform: uppercase; opacity: .8; margin-bottom: 3px; }
+.phone-badge-num { font-family: 'Oswald', sans-serif; font-size: 18px; font-weight: 700; letter-spacing: .05em; }
+
+/* ── TRUST STRIP ── */
+.trust-strip {
+  background: var(--gold);
+  padding: 0 5%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0;
+  overflow: hidden;
+}
+
+.trust-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 18px 28px;
+  font-family: 'Oswald', sans-serif;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--navy);
+  letter-spacing: .06em;
+  text-transform: uppercase;
+  border-right: 1px solid rgba(11,30,61,.2);
+  white-space: nowrap;
+}
+
+.trust-item:last-child { border-right: none; }
+.trust-icon { font-size: 18px; }
+
+/* ── HOW IT WORKS ── */
+.how-section { padding: 96px 8%; background: var(--white); }
+
+.section-header { margin-bottom: 60px; }
+.section-eyebrow {
+  font-family: 'Oswald', sans-serif;
+  font-size: 12px;
+  letter-spacing: .25em;
+  text-transform: uppercase;
+  color: var(--red);
+  margin-bottom: 12px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.section-eyebrow::before { content: ''; width: 32px; height: 2px; background: var(--red); }
+
+.section-title {
+  font-family: 'Oswald', sans-serif;
+  font-size: clamp(32px, 4vw, 52px);
+  font-weight: 700;
+  color: var(--navy);
+  text-transform: uppercase;
+  line-height: 1.05;
+  letter-spacing: .02em;
+}
+
+.section-title span { color: var(--gold); }
+
+.steps-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2px;
+  background: var(--navy);
+}
+
+.step-card {
+  background: var(--white);
+  padding: 48px 36px;
+  position: relative;
+  transition: background .2s;
+  border-bottom: 4px solid transparent;
+}
+.step-card:hover { background: var(--off-white); border-bottom-color: var(--gold); }
+
+.step-num {
+  font-family: 'Oswald', sans-serif;
+  font-size: 72px;
+  font-weight: 700;
+  color: rgba(11,30,61,.08);
+  line-height: 1;
+  margin-bottom: 16px;
+}
+
+.step-icon { font-size: 32px; margin-bottom: 16px; }
+
+.step-title {
+  font-family: 'Oswald', sans-serif;
+  font-size: 22px;
+  font-weight: 600;
+  color: var(--navy);
+  text-transform: uppercase;
+  letter-spacing: .04em;
+  margin-bottom: 12px;
+}
+
+.step-body { font-size: 15px; color: var(--gray); line-height: 1.65; }
+
+/* ── ABOUT / ISRAEL SECTION ── */
+.about-section {
+  background: var(--navy);
+  padding: 0;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  min-height: 600px;
+  position: relative;
+}
+
+.about-photo-col {
+  position: relative;
+  overflow: hidden;
+}
+
+.about-photo {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center top;
+  display: block;
+}
+
+/* Red diagonal overlay */
+.about-photo-col::after {
+  content: '';
+  position: absolute;
+  top: 0; right: 0;
+  width: 80px;
+  height: 100%;
+  background: linear-gradient(to right, transparent, var(--navy));
+}
+
+.about-content {
+  padding: 80px 8% 80px 5%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  position: relative;
+  z-index: 2;
+}
+
+.about-eyebrow { font-family: 'Oswald', sans-serif; font-size: 11px; color: var(--gold); letter-spacing: .2em; text-transform: uppercase; margin-bottom: 16px; }
+
+.about-title {
+  font-family: 'Oswald', sans-serif;
+  font-size: clamp(36px, 4vw, 56px);
+  font-weight: 700;
+  color: var(--white);
+  text-transform: uppercase;
+  line-height: 1.0;
+  margin-bottom: 8px;
+}
+
+.about-title span { color: var(--gold); }
+
+.about-subtitle {
+  font-family: 'Oswald', sans-serif;
+  font-size: 18px;
+  color: var(--red);
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  margin-bottom: 28px;
+}
+
+.about-body { font-size: 16px; color: var(--gray-lt); line-height: 1.75; margin-bottom: 16px; }
+
+.about-highlight {
+  background: rgba(201,150,58,.1);
+  border-left: 4px solid var(--gold);
+  padding: 16px 20px;
+  margin: 24px 0;
+  font-size: 16px;
+  color: var(--gold-pale);
+  line-height: 1.6;
+  font-style: italic;
+}
+
+.about-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--gold);
+  color: var(--navy);
+  font-family: 'Oswald', sans-serif;
+  font-size: 15px;
+  font-weight: 700;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  padding: 14px 28px;
+  text-decoration: none;
+  width: fit-content;
+  transition: all .2s;
+  margin-top: 8px;
+}
+.about-btn:hover { background: var(--gold-lt); }
+
+/* ── WHO I HELP ── */
+.help-section { padding: 96px 8%; background: var(--off-white); }
+
+.help-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 3px;
+  background: var(--gray-lt);
+  margin-top: 56px;
+}
+
+.help-card {
+  background: var(--white);
+  padding: 40px 36px;
+  border-bottom: 4px solid transparent;
+  transition: all .2s;
+  position: relative;
+  overflow: hidden;
+}
+.help-card:hover { border-bottom-color: var(--red); }
+.help-card::before { content: ''; position: absolute; top: 0; left: 0; width: 4px; height: 100%; background: var(--gold); }
+
+.help-icon { font-size: 36px; margin-bottom: 16px; }
+.help-title { font-family: 'Oswald', sans-serif; font-size: 22px; font-weight: 600; color: var(--navy); text-transform: uppercase; letter-spacing: .04em; margin-bottom: 10px; }
+.help-body { font-size: 15px; color: var(--gray); line-height: 1.65; }
+
+/* ── BRANDS SECTION ── */
+.brands-section { padding: 80px 8%; background: var(--navy); }
+
+.brands-section .section-title { color: var(--white); }
+.brands-section .section-eyebrow { color: var(--gold); }
+.brands-section .section-eyebrow::before { background: var(--gold); }
+
+.brands-grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 3px;
+  margin-top: 48px;
+  background: rgba(255,255,255,.06);
+}
+
+.brand-card {
+  background: var(--navy-mid);
+  padding: 32px 20px;
+  text-align: center;
+  border-bottom: 3px solid transparent;
+  transition: all .2s;
+  cursor: default;
+}
+.brand-card:hover { background: var(--navy-lt); border-bottom-color: var(--gold); }
+
+.brand-card-logo {
+  font-family: 'Oswald', sans-serif;
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--white);
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  margin-bottom: 6px;
+}
+
+.brand-card-type { font-size: 11px; color: var(--gray); letter-spacing: .06em; }
+
+/* ── TESTIMONIALS ── */
+.testi-section { padding: 96px 8%; background: var(--white); }
+
+.testi-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+  margin-top: 56px;
+}
+
+.testi-card {
+  background: var(--off-white);
+  border-top: 4px solid var(--gold);
+  padding: 32px 28px;
+  position: relative;
+  transition: all .2s;
+}
+.testi-card:hover { box-shadow: 0 8px 32px rgba(11,30,61,.1); transform: translateY(-2px); }
+
+.testi-quote-mark {
+  font-family: 'Oswald', sans-serif;
+  font-size: 64px;
+  color: var(--gold);
+  opacity: .2;
+  line-height: 1;
+  margin-bottom: 8px;
+}
+
+.testi-stars { color: var(--gold); font-size: 14px; letter-spacing: 2px; margin-bottom: 14px; }
+.testi-text { font-size: 15px; color: var(--navy); line-height: 1.7; margin-bottom: 20px; font-style: italic; }
+
+.testi-author { display: flex; align-items: center; gap: 12px; }
+.testi-av { width: 40px; height: 40px; border-radius: 50%; background: var(--navy); display: flex; align-items: center; justify-content: center; font-size: 18px; flex-shrink: 0; }
+.testi-name { font-family: 'Oswald', sans-serif; font-size: 15px; font-weight: 600; color: var(--navy); text-transform: uppercase; }
+.testi-detail { font-size: 12px; color: var(--gray); margin-top: 2px; }
+
+/* ── CTA / FORM SECTION ── */
+.cta-section {
+  background: var(--navy);
+  padding: 96px 8%;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 80px;
+  align-items: start;
+  position: relative;
+  overflow: hidden;
+}
+
+/* diagonal accent */
+.cta-section::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%; height: 6px;
+  background: linear-gradient(90deg, var(--gold), var(--red), var(--gold));
+}
+
+.cta-left { padding-top: 8px; }
+.cta-eyebrow { font-family: 'Oswald', sans-serif; font-size: 11px; color: var(--gold); letter-spacing: .2em; text-transform: uppercase; margin-bottom: 14px; }
+
+.cta-title {
+  font-family: 'Oswald', sans-serif;
+  font-size: clamp(32px, 4vw, 52px);
+  font-weight: 700;
+  color: var(--white);
+  text-transform: uppercase;
+  line-height: 1.05;
+  margin-bottom: 20px;
+}
+
+.cta-title span { color: var(--gold); }
+
+.cta-body { font-size: 17px; color: var(--gray-lt); line-height: 1.7; margin-bottom: 36px; }
+
+.cta-promises { display: flex; flex-direction: column; gap: 14px; }
+
+.promise-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 15px;
+  color: var(--gray-lt);
+}
+
+.promise-check {
+  width: 24px; height: 24px;
+  background: var(--gold);
+  color: var(--navy);
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 12px;
+  font-weight: 700;
+  flex-shrink: 0;
+}
+
+/* FORM */
+.lead-form {
+  background: var(--white);
+  padding: 44px 40px;
+  position: sticky;
+  top: 88px;
+}
+
+.form-header {
+  background: var(--navy);
+  margin: -44px -40px 28px;
+  padding: 24px 40px;
+  border-bottom: 4px solid var(--gold);
+}
+
+.form-title { font-family: 'Oswald', sans-serif; font-size: 22px; font-weight: 700; color: var(--white); text-transform: uppercase; letter-spacing: .04em; }
+.form-sub { font-size: 13px; color: var(--gray-lt); margin-top: 4px; }
+
+.field { margin-bottom: 14px; }
+.field label { display: block; font-family: 'Oswald', sans-serif; font-size: 11px; font-weight: 600; letter-spacing: .14em; text-transform: uppercase; color: var(--navy); margin-bottom: 6px; }
+
+.field input, .field select {
+  width: 100%;
+  background: var(--off-white);
+  border: 1.5px solid var(--gray-lt);
+  padding: 12px 14px;
+  font-size: 15px;
+  font-family: 'Barlow', sans-serif;
+  color: var(--navy);
+  outline: none;
+  transition: border-color .2s;
+  appearance: none;
+  border-radius: 0;
+}
+.field input::placeholder { color: var(--gray); }
+.field input:focus, .field select:focus { border-color: var(--navy); background: var(--white); }
+.field select option { background: var(--white); }
+
+.field-row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+
+.form-submit {
+  width: 100%;
+  background: var(--red);
+  color: var(--white);
+  font-family: 'Oswald', sans-serif;
+  font-size: 18px;
+  font-weight: 700;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  padding: 18px;
+  border: none;
+  cursor: pointer;
+  margin-top: 6px;
+  transition: all .2s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+.form-submit:hover { background: var(--navy); }
+
+.form-fine { font-size: 12px; color: var(--gray); text-align: center; margin-top: 12px; }
+
+/* SUCCESS */
+.success-state { display: none; flex-direction: column; align-items: center; text-align: center; padding: 60px 20px; gap: 16px; }
+.success-icon { width: 72px; height: 72px; background: var(--gold); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 32px; }
+.success-h { font-family: 'Oswald', sans-serif; font-size: 26px; font-weight: 700; color: var(--navy); text-transform: uppercase; }
+.success-p { font-size: 15px; color: var(--gray); line-height: 1.6; max-width: 280px; }
+.success-call { display: flex; align-items: center; gap: 8px; background: var(--navy); color: var(--gold); font-family: 'Oswald', sans-serif; font-size: 15px; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; padding: 14px 24px; text-decoration: none; transition: background .2s; }
+.success-call:hover { background: var(--red); color: var(--white); }
+
+/* ── FOOTER ── */
+footer {
+  background: var(--navy-mid);
+  border-top: 4px solid var(--gold);
+  padding: 48px 8%;
+}
+
+.footer-top {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr;
+  gap: 60px;
+  margin-bottom: 40px;
+  padding-bottom: 40px;
+  border-bottom: 1px solid rgba(255,255,255,.08);
+}
+
+.footer-brand-name { font-family: 'Oswald', sans-serif; font-size: 28px; font-weight: 700; color: var(--white); text-transform: uppercase; letter-spacing: .04em; margin-bottom: 4px; }
+.footer-brand-tag { font-size: 13px; color: var(--gold); letter-spacing: .1em; text-transform: uppercase; margin-bottom: 16px; }
+.footer-desc { font-size: 14px; color: var(--gray); line-height: 1.65; max-width: 320px; }
+
+.footer-col-title { font-family: 'Oswald', sans-serif; font-size: 14px; color: var(--gold); letter-spacing: .15em; text-transform: uppercase; margin-bottom: 16px; }
+.footer-links { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+.footer-links a { color: var(--gray); font-size: 14px; text-decoration: none; transition: color .2s; }
+.footer-links a:hover { color: var(--white); }
+
+.footer-bottom { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px; }
+.footer-copy { font-size: 13px; color: var(--gray); }
+.footer-phone { font-family: 'Oswald', sans-serif; font-size: 18px; color: var(--gold); letter-spacing: .04em; text-decoration: none; }
+
+/* RESPONSIVE */
+@media (max-width: 960px) {
+  .hero { grid-template-columns: 1fr; }
+  .hero-right { height: 400px; }
+  .hero-shield, .hero-phone-badge { display: none; }
+  .about-section { grid-template-columns: 1fr; }
+  .about-photo-col { height: 320px; }
+  .cta-section { grid-template-columns: 1fr; gap: 48px; }
+  .lead-form { position: static; }
+  .brands-grid { grid-template-columns: repeat(3, 1fr); }
+  .help-grid, .testi-grid, .steps-grid { grid-template-columns: 1fr; }
+  .footer-top { grid-template-columns: 1fr; gap: 32px; }
+  .nav-links { display: none; }
+}
+</style>
+</head>
+<body>
+
+<!-- ALERT BAR -->
+<div class="alert-bar">
+  🚗 BuyBack Event Now Live — <a href="#lead-form">Get Your Free Vehicle Estimate →</a>
+</div>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">
+    <img src="israel-photo.jpg" alt="Israel Cabrera" class="nav-logo-img">
+    <div class="nav-logo-text">
+      <span class="nav-logo-ask">Ask For</span>
+      <span class="nav-logo-name">Israel Cabrera</span>
+    </div>
+  </div>
+  <div class="nav-links-wrap">
+    <ul class="nav-links">
+      <li><a href="#how">How It Works</a></li>
+      <li><a href="#about">About Israel</a></li>
+      <li><a href="#brands">9 Brands</a></li>
+      <li><a href="#who">Who I Help</a></li>
+    </ul>
+  </div>
+  <div class="nav-cta-wrap">
+    <a href="#lead-form" class="nav-cta">Free Consultation</a>
+  </div>
+</nav>
+
+<!-- BRAND BAR -->
+<div class="brand-bar">
+  <span class="brand-bar-label">9 Brands Available</span>
+  <div class="brand-logos">
+    <span class="brand-logo-item">Toyota</span>
+    <span class="brand-logo-item">Mazda</span>
+    <span class="brand-logo-item">KIA</span>
+    <span class="brand-logo-item">Hyundai</span>
+    <span class="brand-logo-item">Nissan</span>
+    <span class="brand-logo-item">Chrysler</span>
+    <span class="brand-logo-item">Jeep</span>
+    <span class="brand-logo-item">Dodge</span>
+    <span class="brand-logo-item">RAM</span>
+  </div>
+</div>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-left">
+    <div class="hero-eyebrow">
+      <span class="eyebrow-badge">Sansone Auto Mall</span>
+      <span class="eyebrow-tag">Woodbridge, NJ</span>
+    </div>
+    <div class="hero-ask">Ask For</div>
+    <h1 class="hero-name">ISRAEL<br><span>CABRERA</span></h1>
+    <div class="hero-title-tag">Auto Expert &nbsp;·&nbsp; Your Car Broker</div>
+    <p class="hero-tagline"><strong>9 Brands. One Broker.</strong><br>How Car Buying Should Be.</p>
+    <p class="hero-sub">Bad credit welcome. First-time buyers welcome. Whether you've been turned down before or just want the best deal across multiple brands — I work for you, not the dealership.</p>
+    <div class="hero-btns">
+      <a href="#lead-form" class="btn-red">Get My Free Consultation →</a>
+      <a href="tel:8888178898" class="btn-gold-outline">📞 (888) 817-8898</a>
+    </div>
+    <div class="hero-stats">
+      <div class="stat"><span class="stat-n">9</span><span class="stat-l">Brands</span></div>
+      <div class="stat"><span class="stat-n">100+</span><span class="stat-l">Families Helped</span></div>
+      <div class="stat"><span class="stat-n">$0</span><span class="stat-l">Broker Fee</span></div>
+      <div class="stat"><span class="stat-n">Free</span><span class="stat-l">Consultation</span></div>
+    </div>
+  </div>
+
+  <div class="hero-right">
+    <div class="hero-photo-wrap">
+      <img src="israel-hero.jpeg" alt="Ask For Israel — Auto Expert" class="hero-photo">
+      <div class="hero-phone-badge">
+        <div class="phone-badge-label">Call Direct</div>
+        <div class="phone-badge-num">(888) 817-8898</div>
+      </div>
+      <div class="hero-shield">
+        <div class="shield-stars">★ ★ ★ ★ ★</div>
+        <div class="shield-text">
+          <span>ISRAEL CABRERA</span>
+          Certified Auto Expert
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TRUST STRIP -->
+<div class="trust-strip">
+  <div class="trust-item"><span class="trust-icon">✓</span> Bad Credit Welcome</div>
+  <div class="trust-item"><span class="trust-icon">✓</span> No Broker Fees</div>
+  <div class="trust-item"><span class="trust-icon">✓</span> 9 Brands Available</div>
+  <div class="trust-item"><span class="trust-icon">✓</span> First-Time Buyers</div>
+  <div class="trust-item"><span class="trust-icon">✓</span> Free Consultation</div>
+  <div class="trust-item"><span class="trust-icon">✓</span> Same-Day Response</div>
+</div>
+
+<!-- HOW IT WORKS -->
+<section class="how-section" id="how">
+  <div class="section-header">
+    <div class="section-eyebrow">Simple Process</div>
+    <h2 class="section-title">How Car Buying<br><span>Should Be</span></h2>
+  </div>
+  <div class="steps-grid">
+    <div class="step-card">
+      <div class="step-num">01</div>
+      <div class="step-icon">📋</div>
+      <div class="step-title">Tell Me Your Situation</div>
+      <p class="step-body">Fill out a quick form — budget, credit, what you're looking for. No judgment, no pressure. Takes 2 minutes and doesn't affect your credit score.</p>
+    </div>
+    <div class="step-card">
+      <div class="step-num">02</div>
+      <div class="step-icon">🔍</div>
+      <div class="step-title">I Find Your Best Options</div>
+      <p class="step-body">I shop across 9 brands and multiple lenders to find what actually works for your situation — not just what's easiest to sell or what's on one lot.</p>
+    </div>
+    <div class="step-card">
+      <div class="step-num">03</div>
+      <div class="step-icon">🚗</div>
+      <div class="step-title">You Drive Away Happy</div>
+      <p class="step-body">We close the deal together and you leave knowing you got the best option available — not just the first one offered.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT ISRAEL -->
+<section class="about-section" id="about">
+  <div class="about-photo-col">
+    <img src="israel-photo.jpg" alt="Israel Cabrera — Auto Expert" class="about-photo">
+  </div>
+  <div class="about-content">
+    <div class="about-eyebrow">Who You're Working With</div>
+    <h2 class="about-title">I Work For<br><span>You.</span></h2>
+    <div class="about-subtitle">Not the Dealership.</div>
+    <p class="about-body">Most salespeople are tied to one brand and one lot. I'm not. As a broker at Sansone Auto Mall, I have access to Toyota, Mazda, KIA, Hyundai, Nissan, Chrysler, Jeep, Dodge, and RAM — which means I shop across all of them to find what actually fits your life and budget.</p>
+    <div class="about-highlight">"My job isn't to judge where you've been financially — it's to find a path forward from where you are right now."</div>
+    <p class="about-body">Whether you've been turned down before, you're buying your first car, your lease is ending, or you just need payments that work — I've helped people in every one of those situations.</p>
+    <a href="#lead-form" class="about-btn">Start Your Free Consultation →</a>
+  </div>
+</section>
+
+<!-- WHO I HELP -->
+<section class="help-section" id="who">
+  <div class="section-header">
+    <div class="section-eyebrow">You're In The Right Place If...</div>
+    <h2 class="section-title">Real People.<br><span>Real Situations.</span></h2>
+  </div>
+  <div class="help-grid">
+    <div class="help-card">
+      <div class="help-icon">🔄</div>
+      <div class="help-title">You've Been Turned Down Before</div>
+      <p class="help-body">A dealership saying no doesn't mean every door is closed. I work with lenders who look at the full picture — not just a credit score.</p>
+    </div>
+    <div class="help-card">
+      <div class="help-icon">🌱</div>
+      <div class="help-title">You're Rebuilding Your Credit</div>
+      <p class="help-body">Getting into a reliable car can actually help you rebuild. I'll find options that fit your budget now and set you up for better rates later.</p>
+    </div>
+    <div class="help-card">
+      <div class="help-icon">🎓</div>
+      <div class="help-title">You're a First-Time Buyer</div>
+      <p class="help-body">Not sure where to start? I'll walk you through the whole process — no confusing jargon, no pressure. Just someone in your corner.</p>
+    </div>
+    <div class="help-card">
+      <div class="help-icon">💵</div>
+      <div class="help-title">You Need Payments That Actually Fit</div>
+      <p class="help-body">I shop across 9 brands to find what fits your monthly budget — not just push you toward whatever has the highest commission.</p>
+    </div>
+  </div>
+</section>
+
+<!-- 9 BRANDS -->
+<section class="brands-section" id="brands">
+  <div class="section-header">
+    <div class="section-eyebrow">One Broker. Many Options.</div>
+    <h2 class="section-title">Access to <span>9 Major Brands</span></h2>
+  </div>
+  <div class="brands-grid">
+    <div class="brand-card"><div class="brand-card-logo">Toyota</div><div class="brand-card-type">Sedans · SUVs · Trucks</div></div>
+    <div class="brand-card"><div class="brand-card-logo">Mazda</div><div class="brand-card-type">Sedans · SUVs · Crossovers</div></div>
+    <div class="brand-card"><div class="brand-card-logo">KIA</div><div class="brand-card-type">Sedans · SUVs · EVs</div></div>
+    <div class="brand-card"><div class="brand-card-logo">Hyundai</div><div class="brand-card-type">Sedans · SUVs · EVs</div></div>
+    <div class="brand-card"><div class="brand-card-logo">Nissan</div><div class="brand-card-type">Sedans · SUVs · Trucks</div></div>
+    <div class="brand-card"><div class="brand-card-logo">Chrysler</div><div class="brand-card-type">Minivans · Sedans</div></div>
+    <div class="brand-card"><div class="brand-card-logo">Jeep</div><div class="brand-card-type">SUVs · Off-Road</div></div>
+    <div class="brand-card"><div class="brand-card-logo">Dodge</div><div class="brand-card-type">Muscle · SUVs</div></div>
+    <div class="brand-card"><div class="brand-card-logo">RAM</div><div class="brand-card-type">Trucks · Commercial</div></div>
+    <div class="brand-card" style="background:rgba(201,150,58,.08); display:flex; align-items:center; justify-content:center;">
+      <div style="text-align:center;">
+        <div style="font-family:'Oswald',sans-serif; font-size:13px; color:var(--gold); letter-spacing:.1em; text-transform:uppercase;">More options available</div>
+        <div style="font-size:12px; color:var(--gray); margin-top:4px;">Ask Israel</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section class="testi-section" id="reviews">
+  <div class="section-header">
+    <div class="section-eyebrow">What People Are Saying</div>
+    <h2 class="section-title">Real Results for<br><span>Real People</span></h2>
+  </div>
+  <div class="testi-grid">
+    <div class="testi-card">
+      <div class="testi-quote-mark">"</div>
+      <div class="testi-stars">★★★★★</div>
+      <p class="testi-text">"I had been turned down at two dealerships because of my credit. Israel found me a KIA with payments I could actually afford. He never made me feel judged about my situation."</p>
+      <div class="testi-author">
+        <div class="testi-av">👤</div>
+        <div><div class="testi-name">Maria T.</div><div class="testi-detail">Credit rebuilt · KIA Forte · NJ</div></div>
+      </div>
+    </div>
+    <div class="testi-card">
+      <div class="testi-quote-mark">"</div>
+      <div class="testi-stars">★★★★★</div>
+      <p class="testi-text">"He literally saved me $180 a month compared to what the dealership originally quoted me. I didn't even know a broker could do that."</p>
+      <div class="testi-author">
+        <div class="testi-av">👤</div>
+        <div><div class="testi-name">James R.</div><div class="testi-detail">Credit rebuild · Toyota Corolla</div></div>
+      </div>
+    </div>
+    <div class="testi-card">
+      <div class="testi-quote-mark">"</div>
+      <div class="testi-stars">★★★★★</div>
+      <p class="testi-text">"I came in nervous and left with a car the same day. He explained everything, didn't pressure me once, and the payment actually made sense for my life."</p>
+      <div class="testi-author">
+        <div class="testi-av">👤</div>
+        <div><div class="testi-name">Sandra M.</div><div class="testi-detail">First approval · Nissan Sentra</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA / FORM -->
+<section class="cta-section" id="lead-form">
+  <div class="cta-left">
+    <div class="cta-eyebrow">Free Consultation</div>
+    <h2 class="cta-title">Let's Find Your<br><span>Next Car Together</span></h2>
+    <p class="cta-body">Fill out the form and Israel will personally reach out within a few hours. No bots, no automated responses — just a real conversation about what we can do for you.</p>
+    <div class="cta-promises">
+      <div class="promise-item"><div class="promise-check">✓</div> No credit check to get started</div>
+      <div class="promise-item"><div class="promise-check">✓</div> Your info stays 100% private</div>
+      <div class="promise-item"><div class="promise-check">✓</div> Zero pressure, zero obligation</div>
+      <div class="promise-item"><div class="promise-check">✓</div> Personal response within hours</div>
+      <div class="promise-item"><div class="promise-check">✓</div> No broker fees — ever</div>
+    </div>
+  </div>
+
+  <div class="lead-form" id="the-form">
+    <div id="form-content">
+      <div class="form-header">
+        <div class="form-title">Get Your Free Consultation</div>
+        <div class="form-sub">Takes 2 minutes. No credit check required.</div>
+      </div>
+      <div class="field-row">
+        <div class="field"><label>First Name *</label><input type="text" id="fname" placeholder="Maria" required></div>
+        <div class="field"><label>Last Name *</label><input type="text" id="lname" placeholder="Torres" required></div>
+      </div>
+      <div class="field"><label>Phone Number *</label><input type="tel" id="phone" placeholder="(201) 555-0000" required></div>
+      <div class="field"><label>Email Address *</label><input type="email" id="email" placeholder="you@email.com" required></div>
+      <div class="field">
+        <label>Monthly Budget</label>
+        <select id="budget">
+          <option value="" disabled selected>Select your range</option>
+          <option>Under $250/month</option>
+          <option>$250 – $350/month</option>
+          <option>$350 – $450/month</option>
+          <option>$450 – $600/month</option>
+          <option>$600+/month</option>
+        </select>
+      </div>
+      <div class="field">
+        <label>Credit Situation</label>
+        <select id="credit">
+          <option value="" disabled selected>Select your situation</option>
+          <option>Good (680+)</option>
+          <option>Fair (600–679)</option>
+          <option>Rebuilding (500–599)</option>
+          <option>Not sure — haven't checked recently</option>
+          <option>Below 500 — been turned down before</option>
+        </select>
+      </div>
+      <div class="field">
+        <label>Vehicle Interest</label>
+        <select id="vehicle">
+          <option value="" disabled selected>What are you looking for?</option>
+          <option>Sedan / Car</option>
+          <option>SUV / Crossover</option>
+          <option>Truck (RAM, Dodge)</option>
+          <option>Minivan / Family vehicle</option>
+          <option>Open to whatever fits my budget</option>
+        </select>
+      </div>
+      <button class="form-submit" onclick="submitForm()">GET MY FREE CONSULTATION →</button>
+      <p class="form-fine">🔒 100% private. No spam, ever.</p>
+    </div>
+    <div class="success-state" id="success-state">
+      <div class="success-icon">✓</div>
+      <div class="success-h" id="success-name">You're All Set!</div>
+      <p class="success-p">Israel will reach out personally within the next few hours. Keep an eye on your phone.</p>
+      <a href="tel:8888178898" class="success-call">📞 Call Now · (888) 817-8898</a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-top">
+    <div>
+      <div class="footer-brand-name">Israel Cabrera</div>
+      <div class="footer-brand-tag">Auto Expert · Your Car Broker</div>
+      <p class="footer-desc">Working across 9 major brands at Sansone Auto Mall in Woodbridge, NJ. Bad credit welcome. First-time buyers welcome. No broker fees — ever.</p>
+    </div>
+    <div>
+      <div class="footer-col-title">Quick Links</div>
+      <ul class="footer-links">
+        <li><a href="#how">How It Works</a></li>
+        <li><a href="#about">About Israel</a></li>
+        <li><a href="#brands">9 Brands</a></li>
+        <li><a href="#who">Who I Help</a></li>
+        <li><a href="#reviews">Reviews</a></li>
+      </ul>
+    </div>
+    <div>
+      <div class="footer-col-title">Contact</div>
+      <ul class="footer-links">
+        <li><a href="tel:8888178898">(888) 817-8898</a></li>
+        <li><a href="/cdn-cgi/l/email-protection#dab3a9a8bbbfb6b0b9bbb8a8bfa9bbb6bfa9aebfbbb79abdb7bbb3b6f4b9b5b7">Email Israel</a></li>
+        <li><a href="#lead-form">Free Consultation</a></li>
+        <li><a href="#">90-100 Route 1, Woodbridge NJ</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <div class="footer-copy">© 2026 Israel J. Cabrera · All rights reserved · askforisrael.com</div>
+    <a href="tel:8888178898" class="footer-phone">(888) 817-8898</a>
+  </div>
+</footer>
+
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+function submitForm() {
+  const fname = document.getElementById('fname').value.trim();
+  const phone = document.getElementById('phone').value.trim();
+  const email = document.getElementById('email').value.trim();
+  if (!fname || !phone || !email) { alert('Please fill in your name, phone, and email.'); return; }
+  document.getElementById('form-content').style.display = 'none';
+  const s = document.getElementById('success-state');
+  s.style.display = 'flex';
+  document.getElementById('success-name').textContent = `You're all set, ${fname}!`;
+  document.getElementById('the-form').scrollIntoView({ behavior: 'smooth', block: 'center' });
+  // GHL Webhook — uncomment and paste your webhook URL:
+  // fetch('YOUR_GHL_WEBHOOK_URL', {
+  //   method: 'POST',
+  //   headers: { 'Content-Type': 'application/json' },
+  //   body: JSON.stringify({
+  //     firstName: fname,
+  //     lastName: document.getElementById('lname').value,
+  //     phone, email,
+  //     budget: document.getElementById('budget').value,
+  //     credit: document.getElementById('credit').value,
+  //     vehicle: document.getElementById('vehicle').value,
+  //     tags: ['a. warm lead'],
+  //     source: 'Main Site — Homepage'
+  //   })
+  // });
+}
+
+// Smooth scroll for all anchor links
+document.querySelectorAll('a[href^="#"]').forEach(a => {
+  a.addEventListener('click', e => {
+    const target = document.q
