@@ -908,6 +908,7 @@ footer {
       <li><a href="#about">About Israel</a></li>
       <li><a href="#brands">9 Brands</a></li>
       <li><a href="#who">Who I Help</a></li>
+      <li><a href="#reviews">Reviews</a></li>
     </ul>
   </div>
   <div class="nav-cta-wrap">
@@ -995,25 +996,55 @@ footer {
 
   </div>
 
-  <!-- STATS BAR: navy background -->
-  <div style="background:var(--navy);border-top:3px solid var(--gold);padding:32px 5%;display:flex;justify-content:center;gap:60px;flex-wrap:wrap;">
+  <!-- STATS BAR: animated counters -->
+  <div id="stats-bar" style="background:var(--navy);border-top:3px solid var(--gold);padding:40px 5%;display:flex;justify-content:center;gap:60px;flex-wrap:wrap;">
     <div style="text-align:center;">
-      <div style="font-family:'Oswald',sans-serif;font-size:38px;font-weight:700;color:var(--gold);line-height:1;">9</div>
-      <div style="font-size:12px;color:var(--gray-lt);text-transform:uppercase;letter-spacing:.1em;margin-top:4px;">Brands Available</div>
+      <div style="font-family:'Oswald',sans-serif;font-size:48px;font-weight:700;color:var(--gold);line-height:1;" data-target="9" data-suffix="" class="counter">0</div>
+      <div style="font-size:12px;color:var(--gray-lt);text-transform:uppercase;letter-spacing:.1em;margin-top:6px;">Brands Available</div>
     </div>
     <div style="text-align:center;">
-      <div style="font-family:'Oswald',sans-serif;font-size:38px;font-weight:700;color:var(--gold);line-height:1;">100+</div>
-      <div style="font-size:12px;color:var(--gray-lt);text-transform:uppercase;letter-spacing:.1em;margin-top:4px;">Families Helped</div>
+      <div style="font-family:'Oswald',sans-serif;font-size:48px;font-weight:700;color:var(--gold);line-height:1;" data-target="100" data-suffix="+" class="counter">0</div>
+      <div style="font-size:12px;color:var(--gray-lt);text-transform:uppercase;letter-spacing:.1em;margin-top:6px;">Families Helped</div>
     </div>
     <div style="text-align:center;">
-      <div style="font-family:'Oswald',sans-serif;font-size:38px;font-weight:700;color:var(--gold);line-height:1;">$0</div>
-      <div style="font-size:12px;color:var(--gray-lt);text-transform:uppercase;letter-spacing:.1em;margin-top:4px;">Broker Fee</div>
+      <div style="font-family:'Oswald',sans-serif;font-size:48px;font-weight:700;color:var(--gold);line-height:1;">$0</div>
+      <div style="font-size:12px;color:var(--gray-lt);text-transform:uppercase;letter-spacing:.1em;margin-top:6px;">Broker Fee — Ever</div>
     </div>
     <div style="text-align:center;">
-      <div style="font-family:'Oswald',sans-serif;font-size:38px;font-weight:700;color:var(--gold);line-height:1;">Free</div>
-      <div style="font-size:12px;color:var(--gray-lt);text-transform:uppercase;letter-spacing:.1em;margin-top:4px;">Consultation</div>
+      <div style="font-family:'Oswald',sans-serif;font-size:48px;font-weight:700;color:var(--gold);line-height:1;" data-target="5" data-suffix="★" class="counter">0</div>
+      <div style="font-size:12px;color:var(--gray-lt);text-transform:uppercase;letter-spacing:.1em;margin-top:6px;">Star Service</div>
     </div>
   </div>
+  <script>
+  (function(){
+    var observed = false;
+    var observer = new IntersectionObserver(function(entries){
+      if(observed) return;
+      entries.forEach(function(e){
+        if(e.isIntersecting){
+          observed = true;
+          document.querySelectorAll('.counter').forEach(function(el){
+            var target = parseInt(el.getAttribute('data-target'));
+            var suffix = el.getAttribute('data-suffix') || '';
+            var duration = 1800;
+            var step = target / (duration / 16);
+            var current = 0;
+            var timer = setInterval(function(){
+              current += step;
+              if(current >= target){
+                current = target;
+                clearInterval(timer);
+              }
+              el.textContent = Math.floor(current) + suffix;
+            }, 16);
+          });
+        }
+      });
+    }, {threshold: 0.3});
+    var bar = document.getElementById('stats-bar');
+    if(bar) observer.observe(bar);
+  })();
+  </script>
 
 </section>
 
@@ -1164,8 +1195,171 @@ footer {
   </div>
 </section>
 
+<!-- HOW I'M DIFFERENT -->
+<section style="padding:96px 8%;background:var(--off-white);">
+  <div style="text-align:center;margin-bottom:56px;">
+    <div style="font-family:'Oswald',sans-serif;font-size:12px;letter-spacing:.25em;text-transform:uppercase;color:var(--red);margin-bottom:12px;display:flex;align-items:center;justify-content:center;gap:10px;">
+      <span style="display:inline-block;width:32px;height:2px;background:var(--red);"></span>
+      The Difference
+      <span style="display:inline-block;width:32px;height:2px;background:var(--red);"></span>
+    </div>
+    <h2 style="font-family:'Oswald',sans-serif;font-size:clamp(32px,4vw,52px);font-weight:700;color:var(--navy);text-transform:uppercase;line-height:1.05;">
+      Why Work With Israel<br><span style="color:var(--gold);">vs. A Regular Dealership?</span>
+    </h2>
+  </div>
+
+  <div style="max-width:900px;margin:0 auto;overflow:hidden;border-radius:4px;box-shadow:0 8px 40px rgba(11,30,61,.12);">
+    <!-- Header row -->
+    <div style="display:grid;grid-template-columns:1fr 1fr 1fr;background:var(--navy);">
+      <div style="padding:18px 24px;font-family:'Oswald',sans-serif;font-size:14px;font-weight:600;color:var(--gray-lt);text-transform:uppercase;letter-spacing:.1em;">Feature</div>
+      <div style="padding:18px 24px;text-align:center;background:rgba(192,25,43,.3);border-left:1px solid rgba(255,255,255,.08);">
+        <div style="font-family:'Oswald',sans-serif;font-size:16px;font-weight:700;color:var(--white);text-transform:uppercase;letter-spacing:.06em;">Regular Dealership</div>
+      </div>
+      <div style="padding:18px 24px;text-align:center;background:rgba(201,150,58,.2);border-left:1px solid rgba(255,255,255,.08);">
+        <div style="font-family:'Oswald',sans-serif;font-size:16px;font-weight:700;color:var(--gold);text-transform:uppercase;letter-spacing:.06em;">Working With Israel</div>
+      </div>
+    </div>
+
+    <!-- Rows -->
+    <div style="display:grid;grid-template-columns:1fr 1fr 1fr;background:white;border-bottom:1px solid #eee;">
+      <div style="padding:18px 24px;font-size:15px;font-weight:600;color:var(--navy);border-right:1px solid #eee;">Brands Available</div>
+      <div style="padding:18px 24px;text-align:center;font-size:15px;color:#999;border-right:1px solid #eee;">1 Brand Only</div>
+      <div style="padding:18px 24px;text-align:center;font-size:15px;font-weight:700;color:var(--navy);">9 Brands ✓</div>
+    </div>
+    <div style="display:grid;grid-template-columns:1fr 1fr 1fr;background:#fafafa;border-bottom:1px solid #eee;">
+      <div style="padding:18px 24px;font-size:15px;font-weight:600;color:var(--navy);border-right:1px solid #eee;">Works For</div>
+      <div style="padding:18px 24px;text-align:center;font-size:15px;color:#999;border-right:1px solid #eee;">The Dealership</div>
+      <div style="padding:18px 24px;text-align:center;font-size:15px;font-weight:700;color:var(--navy);">You ✓</div>
+    </div>
+    <div style="display:grid;grid-template-columns:1fr 1fr 1fr;background:white;border-bottom:1px solid #eee;">
+      <div style="padding:18px 24px;font-size:15px;font-weight:600;color:var(--navy);border-right:1px solid #eee;">Bad Credit Welcome</div>
+      <div style="padding:18px 24px;text-align:center;font-size:15px;color:#999;border-right:1px solid #eee;">Often No</div>
+      <div style="padding:18px 24px;text-align:center;font-size:15px;font-weight:700;color:var(--navy);">Always Yes ✓</div>
+    </div>
+    <div style="display:grid;grid-template-columns:1fr 1fr 1fr;background:#fafafa;border-bottom:1px solid #eee;">
+      <div style="padding:18px 24px;font-size:15px;font-weight:600;color:var(--navy);border-right:1px solid #eee;">Lender Options</div>
+      <div style="padding:18px 24px;text-align:center;font-size:15px;color:#999;border-right:1px solid #eee;">Limited to 1</div>
+      <div style="padding:18px 24px;text-align:center;font-size:15px;font-weight:700;color:var(--navy);">Multiple Lenders ✓</div>
+    </div>
+    <div style="display:grid;grid-template-columns:1fr 1fr 1fr;background:white;border-bottom:1px solid #eee;">
+      <div style="padding:18px 24px;font-size:15px;font-weight:600;color:var(--navy);border-right:1px solid #eee;">Consultation Fee</div>
+      <div style="padding:18px 24px;text-align:center;font-size:15px;color:#999;border-right:1px solid #eee;">Varies</div>
+      <div style="padding:18px 24px;text-align:center;font-size:15px;font-weight:700;color:var(--navy);">$0 — Free ✓</div>
+    </div>
+    <div style="display:grid;grid-template-columns:1fr 1fr 1fr;background:#fafafa;border-bottom:1px solid #eee;">
+      <div style="padding:18px 24px;font-size:15px;font-weight:600;color:var(--navy);border-right:1px solid #eee;">Se Habla Español</div>
+      <div style="padding:18px 24px;text-align:center;font-size:15px;color:#999;border-right:1px solid #eee;">Not Always</div>
+      <div style="padding:18px 24px;text-align:center;font-size:15px;font-weight:700;color:var(--navy);">Sí ✓</div>
+    </div>
+    <div style="display:grid;grid-template-columns:1fr 1fr 1fr;background:white;">
+      <div style="padding:18px 24px;font-size:15px;font-weight:600;color:var(--navy);border-right:1px solid #eee;">First-Time Buyers</div>
+      <div style="padding:18px 24px;text-align:center;font-size:15px;color:#999;border-right:1px solid #eee;">Can Be Overwhelming</div>
+      <div style="padding:18px 24px;text-align:center;font-size:15px;font-weight:700;color:var(--navy);">Guided Step by Step ✓</div>
+    </div>
+
+    <!-- Bottom CTA row -->
+    <div style="background:var(--navy);padding:24px;text-align:center;">
+      <a href="#lead-form" style="display:inline-block;background:var(--gold);color:var(--navy);font-family:'Oswald',sans-serif;font-size:16px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;padding:15px 40px;text-decoration:none;transition:background .2s;">Start My Free Consultation →</a>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ SECTION -->
+<section style="padding:96px 8%;background:var(--navy);position:relative;overflow:hidden;">
+  <div style="position:absolute;inset:0;background-image:radial-gradient(circle,rgba(255,255,255,.03) 1px,transparent 1px);background-size:28px 28px;pointer-events:none;"></div>
+  <div style="position:relative;z-index:2;max-width:900px;margin:0 auto;">
+    <div style="text-align:center;margin-bottom:56px;">
+      <div style="font-family:'Oswald',sans-serif;font-size:12px;letter-spacing:.25em;text-transform:uppercase;color:var(--gold);margin-bottom:12px;">Got Questions?</div>
+      <h2 style="font-family:'Oswald',sans-serif;font-size:clamp(32px,4vw,52px);font-weight:700;color:var(--white);text-transform:uppercase;line-height:1.05;">
+        Everything You Want<br><span style="color:var(--gold);">To Know — Answered</span>
+      </h2>
+    </div>
+
+    <div id="faq-list" style="display:flex;flex-direction:column;gap:3px;">
+
+      <div class="faq-item" style="background:var(--navy-mid);border-left:4px solid var(--gold);">
+        <button onclick="toggleFaq(this)" style="width:100%;background:none;border:none;padding:22px 28px;display:flex;justify-content:space-between;align-items:center;cursor:pointer;text-align:left;gap:20px;">
+          <span style="font-family:'Oswald',sans-serif;font-size:18px;font-weight:600;color:var(--white);text-transform:uppercase;letter-spacing:.04em;">Do I need good credit to work with you?</span>
+          <span class="faq-icon" style="font-size:24px;color:var(--gold);flex-shrink:0;transition:transform .3s;">+</span>
+        </button>
+        <div class="faq-body" style="display:none;padding:0 28px 22px;">
+          <p style="font-size:16px;color:var(--gray-lt);line-height:1.7;">Absolutely not. I specialize in working with buyers in all credit situations — including people who have been turned down at other dealerships. I have relationships with lenders who evaluate your full financial picture, not just a credit score. Bad credit, rebuilding credit, no credit — I've helped people in all of those situations get into a vehicle.</p>
+        </div>
+      </div>
+
+      <div class="faq-item" style="background:var(--navy-mid);border-left:4px solid var(--red);">
+        <button onclick="toggleFaq(this)" style="width:100%;background:none;border:none;padding:22px 28px;display:flex;justify-content:space-between;align-items:center;cursor:pointer;text-align:left;gap:20px;">
+          <span style="font-family:'Oswald',sans-serif;font-size:18px;font-weight:600;color:var(--white);text-transform:uppercase;letter-spacing:.04em;">Is there a fee to work with you?</span>
+          <span class="faq-icon" style="font-size:24px;color:var(--gold);flex-shrink:0;transition:transform .3s;">+</span>
+        </button>
+        <div class="faq-body" style="display:none;padding:0 28px 22px;">
+          <p style="font-size:16px;color:var(--gray-lt);line-height:1.7;">Zero. My consultation is completely free and there are no broker fees — ever. I get compensated through the dealership when we close a deal, which means my incentive is to find you the best possible option, not just any option.</p>
+        </div>
+      </div>
+
+      <div class="faq-item" style="background:var(--navy-mid);border-left:4px solid var(--gold);">
+        <button onclick="toggleFaq(this)" style="width:100%;background:none;border:none;padding:22px 28px;display:flex;justify-content:space-between;align-items:center;cursor:pointer;text-align:left;gap:20px;">
+          <span style="font-family:'Oswald',sans-serif;font-size:18px;font-weight:600;color:var(--white);text-transform:uppercase;letter-spacing:.04em;">How is this different from going to a dealership?</span>
+          <span class="faq-icon" style="font-size:24px;color:var(--gold);flex-shrink:0;transition:transform .3s;">+</span>
+        </button>
+        <div class="faq-body" style="display:none;padding:0 28px 22px;">
+          <p style="font-size:16px;color:var(--gray-lt);line-height:1.7;">When you go to a dealership, you're limited to one brand and the salesperson is working for the dealer — not you. When you work with me, I have access to 9 brands and multiple lenders. My job is to find what's genuinely best for your budget and situation. One call, nine options.</p>
+        </div>
+      </div>
+
+      <div class="faq-item" style="background:var(--navy-mid);border-left:4px solid var(--red);">
+        <button onclick="toggleFaq(this)" style="width:100%;background:none;border:none;padding:22px 28px;display:flex;justify-content:space-between;align-items:center;cursor:pointer;text-align:left;gap:20px;">
+          <span style="font-family:'Oswald',sans-serif;font-size:18px;font-weight:600;color:var(--white);text-transform:uppercase;letter-spacing:.04em;">How much do I need for a down payment?</span>
+          <span class="faq-icon" style="font-size:24px;color:var(--gold);flex-shrink:0;transition:transform .3s;">+</span>
+        </button>
+        <div class="faq-body" style="display:none;padding:0 28px 22px;">
+          <p style="font-size:16px;color:var(--gray-lt);line-height:1.7;">It depends on your situation, but often less than you think. Some programs offer $0 down. Others allow your trade-in to cover the down payment entirely. The best way to know your real number is to have a quick conversation — I'll tell you exactly what applies to your situation.</p>
+        </div>
+      </div>
+
+      <div class="faq-item" style="background:var(--navy-mid);border-left:4px solid var(--gold);">
+        <button onclick="toggleFaq(this)" style="width:100%;background:none;border:none;padding:22px 28px;display:flex;justify-content:space-between;align-items:center;cursor:pointer;text-align:left;gap:20px;">
+          <span style="font-family:'Oswald',sans-serif;font-size:18px;font-weight:600;color:var(--white);text-transform:uppercase;letter-spacing:.04em;">Do you speak Spanish? ¿Habla Español?</span>
+          <span class="faq-icon" style="font-size:24px;color:var(--gold);flex-shrink:0;transition:transform .3s;">+</span>
+        </button>
+        <div class="faq-body" style="display:none;padding:0 28px 22px;">
+          <p style="font-size:16px;color:var(--gray-lt);line-height:1.7;">¡Sí! Se habla español. Puedo ayudarte en español durante todo el proceso — desde la consulta inicial hasta el cierre del trato. No hay barreras de idioma aquí.</p>
+        </div>
+      </div>
+
+      <div class="faq-item" style="background:var(--navy-mid);border-left:4px solid var(--red);">
+        <button onclick="toggleFaq(this)" style="width:100%;background:none;border:none;padding:22px 28px;display:flex;justify-content:space-between;align-items:center;cursor:pointer;text-align:left;gap:20px;">
+          <span style="font-family:'Oswald',sans-serif;font-size:18px;font-weight:600;color:var(--white);text-transform:uppercase;letter-spacing:.04em;">How quickly can I get into a vehicle?</span>
+          <span class="faq-icon" style="font-size:24px;color:var(--gold);flex-shrink:0;transition:transform .3s;">+</span>
+        </button>
+        <div class="faq-body" style="display:none;padding:0 28px 22px;">
+          <p style="font-size:16px;color:var(--gray-lt);line-height:1.7;">In many cases, same day or next day. Once we have your information and find the right vehicle, the process moves quickly. The consultation itself takes about 10-15 minutes, and I'll come back to you with real options fast.</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<script>
+function toggleFaq(btn) {
+  var body = btn.nextElementSibling;
+  var icon = btn.querySelector('.faq-icon');
+  var isOpen = body.style.display === 'block';
+  // Close all
+  document.querySelectorAll('.faq-body').forEach(function(b){ b.style.display='none'; });
+  document.querySelectorAll('.faq-icon').forEach(function(i){ i.textContent='+'; i.style.transform='rotate(0deg)'; });
+  // Open clicked if it was closed
+  if(!isOpen){
+    body.style.display = 'block';
+    icon.textContent = '−';
+    icon.style.transform = 'rotate(0deg)';
+  }
+}
+</script>
+
 <!-- REAL RESULTS GALLERY -->
-<section style="padding:96px 5%; background:var(--off-white);">
+<section id="reviews" style="padding:96px 5%; background:var(--off-white);">
   <div style="text-align:center; margin-bottom:56px;">
     <div style="font-family:'Oswald',sans-serif;font-size:12px;letter-spacing:.25em;text-transform:uppercase;color:var(--red);margin-bottom:12px;display:flex;align-items:center;justify-content:center;gap:10px;">
       <span style="display:inline-block;width:32px;height:2px;background:var(--red);"></span>
@@ -1246,6 +1440,10 @@ footer {
   <div class="lead-form" id="the-form">
     <div id="form-content">
       <div class="form-header">
+        <div style="display:flex;align-items:center;gap:8px;background:rgba(34,197,94,.1);border:1px solid rgba(34,197,94,.3);padding:8px 14px;margin-bottom:14px;border-radius:2px;">
+          <span style="width:8px;height:8px;background:#22c55e;border-radius:50%;display:inline-block;flex-shrink:0;"></span>
+          <span style="font-size:13px;color:#166534;font-weight:600;">3 people requested a consultation today</span>
+        </div>
         <div class="form-title">Get Your Free Consultation</div>
         <div class="form-sub">Takes 2 minutes. No credit check required.</div>
       </div>
@@ -1290,6 +1488,11 @@ footer {
       </div>
       <button class="form-submit" onclick="submitForm()">GET MY FREE CONSULTATION →</button>
       <p class="form-fine">🔒 100% private. No spam, ever.</p>
+      <div style="display:flex;align-items:center;justify-content:center;gap:8px;margin-top:10px;font-size:13px;color:var(--gray);">
+        <span style="width:8px;height:8px;background:#22c55e;border-radius:50%;display:inline-block;animation:pulse-green 2s ease-in-out infinite;"></span>
+        Israel typically responds within 2 hours
+      </div>
+      <style>@keyframes pulse-green{0%,100%{box-shadow:0 0 0 0 rgba(34,197,94,.4)}50%{box-shadow:0 0 0 6px rgba(34,197,94,0)}}</style>
     </div>
     <div class="success-state" id="success-state">
       <div class="success-icon">✓</div>
