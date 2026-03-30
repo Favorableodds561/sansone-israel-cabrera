@@ -932,98 +932,73 @@ footer {
 </div>
 
 <!-- HERO -->
-<section style="background:var(--navy); position:relative; overflow:hidden; padding:60px 5% 0;">
+<section style="background:var(--white); position:relative; overflow:hidden;">
 
-  <!-- dot pattern background -->
-  <div style="position:absolute;inset:0;background-image:radial-gradient(circle,rgba(255,255,255,.04) 1px,transparent 1px);background-size:32px 32px;pointer-events:none;"></div>
+  <!-- TOP NAVY BAND: Name + tagline centered -->
+  <div style="background:var(--navy); text-align:center; padding:52px 5% 48px; position:relative;">
+    <!-- dot pattern -->
+    <div style="position:absolute;inset:0;background-image:radial-gradient(circle,rgba(255,255,255,.03) 1px,transparent 1px);background-size:28px 28px;pointer-events:none;"></div>
+    <!-- top gold line -->
+    <div style="position:absolute;top:0;left:0;right:0;height:4px;background:linear-gradient(90deg,var(--gold),var(--red),var(--gold));"></div>
 
-  <!-- TOP: Eyebrow centered -->
-  <div style="text-align:center; position:relative; z-index:2; margin-bottom:32px;">
-    <div style="display:inline-flex; align-items:center; gap:12px;">
-      <span style="background:var(--red); color:var(--white); font-family:'Oswald',sans-serif; font-size:11px; letter-spacing:.2em; text-transform:uppercase; padding:5px 14px; font-weight:600;">Sansone Auto Mall</span>
-      <span style="font-size:13px; color:var(--gold-lt); letter-spacing:.1em; font-weight:500;">Woodbridge, NJ</span>
+    <div style="position:relative;z-index:2;">
+      <div style="font-family:'Oswald',sans-serif;font-size:13px;color:var(--gold);letter-spacing:.3em;text-transform:uppercase;margin-bottom:6px;">Ask For</div>
+      <h1 style="font-family:'Oswald',sans-serif;font-size:clamp(60px,9vw,120px);font-weight:700;line-height:.9;text-transform:uppercase;letter-spacing:.02em;margin:0 0 16px;">
+        <span style="color:var(--white);">ISRAEL</span><br>
+        <span style="color:var(--gold);">CABRERA</span>
+      </h1>
+      <div style="display:inline-block;background:var(--red);color:var(--white);font-family:'Oswald',sans-serif;font-size:clamp(12px,1.6vw,18px);font-weight:600;letter-spacing:.2em;text-transform:uppercase;padding:10px 32px;margin-bottom:20px;">AUTO EXPERT &nbsp;·&nbsp; YOUR CAR BROKER</div>
+      <div style="font-size:clamp(15px,1.8vw,19px);color:var(--gray-lt);line-height:1.5;max-width:600px;margin:0 auto 28px;">
+        <strong style="color:var(--gold-lt);">9 Brands. One Broker.</strong> How Car Buying Should Be.
+      </div>
+      <!-- CTA buttons centered -->
+      <div style="display:flex;gap:14px;justify-content:center;flex-wrap:wrap;">
+        <a href="#lead-form" style="background:var(--red);color:var(--white);font-family:'Oswald',sans-serif;font-size:16px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;padding:15px 34px;text-decoration:none;border:2px solid var(--red);transition:all .2s;">Get My Free Consultation →</a>
+        <a href="tel:8888178898" style="background:transparent;color:var(--gold);font-family:'Oswald',sans-serif;font-size:16px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;padding:15px 34px;text-decoration:none;border:2px solid var(--gold);transition:all .2s;">📞 (888) 817-8898</a>
+      </div>
     </div>
   </div>
 
-  <!-- MAIN: 3-column layout -->
-  <div style="display:grid; grid-template-columns:1fr 360px 1fr; gap:40px; align-items:center; position:relative; z-index:2; max-width:1400px; margin:0 auto;">
+  <!-- PHOTO SECTION: Full width centered photo on white -->
+  <div style="background:var(--white);display:flex;flex-direction:column;align-items:center;padding:0;position:relative;">
 
-    <!-- LEFT: Headline + copy + buttons -->
-    <div style="display:flex; flex-direction:column; gap:16px;">
-      <div style="font-family:'Oswald',sans-serif; font-size:clamp(16px,2vw,22px); color:var(--gold); letter-spacing:.25em; text-transform:uppercase; font-weight:400;">Ask For</div>
-      <h1 style="font-family:'Oswald',sans-serif; font-size:clamp(52px,6vw,88px); color:var(--white); font-weight:700; line-height:.95; letter-spacing:.02em; text-transform:uppercase; margin:0;">ISRAEL<br><span style="color:var(--gold);">CABRERA</span></h1>
-      <div style="background:var(--gold); color:var(--navy); font-family:'Oswald',sans-serif; font-size:clamp(13px,1.5vw,18px); font-weight:600; letter-spacing:.15em; text-transform:uppercase; padding:10px 20px; display:inline-block;">AUTO EXPERT &nbsp;·&nbsp; YOUR CAR BROKER</div>
-      <p style="font-size:clamp(18px,2vw,22px); color:var(--white); font-weight:300; line-height:1.4; margin-top:8px;"><strong style="color:var(--gold); font-weight:600;">9 Brands. One Broker.</strong><br>How Car Buying Should Be.</p>
-      <p style="font-size:15px; color:var(--gray-lt); line-height:1.65; max-width:400px;">Bad credit welcome. First-time buyers welcome. Whether you have been turned down before or just want the best deal across multiple brands — I work for you, not the dealership.</p>
-      <div style="display:flex; gap:14px; flex-wrap:wrap; margin-top:8px;">
-        <a href="#lead-form" class="btn-red">Get My Free Consultation →</a>
-        <a href="tel:8888178898" class="btn-gold-outline">📞 (888) 817-8898</a>
-      </div>
-      <!-- Stats row -->
-      <div style="display:flex; gap:28px; padding-top:24px; border-top:1px solid rgba(255,255,255,.1); margin-top:8px;">
-        <div><div style="font-family:'Oswald',sans-serif; font-size:32px; font-weight:700; color:var(--gold); line-height:1;">9</div><div style="font-size:11px; color:var(--gray); text-transform:uppercase; letter-spacing:.08em; margin-top:3px;">Brands</div></div>
-        <div><div style="font-family:'Oswald',sans-serif; font-size:32px; font-weight:700; color:var(--gold); line-height:1;">100+</div><div style="font-size:11px; color:var(--gray); text-transform:uppercase; letter-spacing:.08em; margin-top:3px;">Families Helped</div></div>
-        <div><div style="font-family:'Oswald',sans-serif; font-size:32px; font-weight:700; color:var(--gold); line-height:1;">$0</div><div style="font-size:11px; color:var(--gray); text-transform:uppercase; letter-spacing:.08em; margin-top:3px;">Broker Fee</div></div>
-        <div><div style="font-family:'Oswald',sans-serif; font-size:32px; font-weight:700; color:var(--gold); line-height:1;">Free</div><div style="font-size:11px; color:var(--gray); text-transform:uppercase; letter-spacing:.08em; margin-top:3px;">Consultation</div></div>
+    <!-- Red diagonal wave behind photo -->
+    <div style="position:absolute;top:0;left:0;right:0;height:50%;background:var(--navy);z-index:0;"></div>
+
+    <!-- Photo centered -->
+    <div style="position:relative;z-index:2;display:inline-block;">
+      <img
+        src="israel-photo.jpg"
+        alt="Israel Cabrera — Auto Expert"
+        style="display:block;width:min(560px,80vw);max-width:560px;height:auto;object-fit:cover;object-position:top center;box-shadow:0 24px 80px rgba(0,0,0,.35);"
+      >
+      <!-- Gold bottom bar over photo -->
+      <div style="background:var(--gold);padding:12px 24px;text-align:center;">
+        <div style="font-family:'Oswald',sans-serif;font-size:13px;color:var(--navy);letter-spacing:.2em;text-transform:uppercase;font-weight:700;">★ ★ ★ ★ ★ &nbsp;&nbsp; Sansone Auto Mall &nbsp;·&nbsp; Woodbridge, NJ</div>
       </div>
     </div>
-
-    <!-- CENTER: Israel photo -->
-    <div style="display:flex; flex-direction:column; align-items:center; justify-content:flex-end;">
-      <!-- Gold border frame -->
-      <div style="border:4px solid var(--gold); display:inline-block; position:relative;">
-        <img
-          src="israel-photo.jpg"
-          alt="Israel Cabrera — Auto Expert"
-          style="display:block; width:360px; max-width:100%; height:480px; object-fit:cover; object-position:top center;"
-        >
-        <!-- Phone badge - top right of photo -->
-        <div style="position:absolute; top:-4px; right:-4px; background:var(--red); color:var(--white); padding:10px 16px; box-shadow:0 8px 24px rgba(192,25,43,.5); z-index:3;">
-          <div style="font-size:9px; letter-spacing:.15em; text-transform:uppercase; opacity:.85;">Call Direct</div>
-          <div style="font-family:'Oswald',sans-serif; font-size:16px; font-weight:700;">(888) 817-8898</div>
-        </div>
-      </div>
-      <!-- Gold stars bar below photo -->
-      <div style="background:var(--gold); width:100%; text-align:center; padding:10px;">
-        <div style="font-family:'Oswald',sans-serif; font-size:12px; color:var(--navy); letter-spacing:.2em; text-transform:uppercase; font-weight:700;">★ ★ ★ ★ ★ &nbsp; Certified Auto Expert</div>
-      </div>
-    </div>
-
-    <!-- RIGHT: Secondary info -->
-    <div style="display:flex; flex-direction:column; gap:24px;">
-      <div style="font-family:'Oswald',sans-serif; font-size:11px; color:var(--gold); letter-spacing:.2em; text-transform:uppercase; margin-bottom:4px;">Why Choose Israel</div>
-
-      <div style="border-left:4px solid var(--gold); padding-left:16px;">
-        <div style="font-family:'Oswald',sans-serif; font-size:16px; color:var(--white); font-weight:600; text-transform:uppercase; margin-bottom:4px;">Bad Credit? No Problem</div>
-        <div style="font-size:14px; color:var(--gray-lt); line-height:1.5;">I work with lenders who look at the full picture, not just a score.</div>
-      </div>
-
-      <div style="border-left:4px solid var(--red); padding-left:16px;">
-        <div style="font-family:'Oswald',sans-serif; font-size:16px; color:var(--white); font-weight:600; text-transform:uppercase; margin-bottom:4px;">9 Brands, One Call</div>
-        <div style="font-size:14px; color:var(--gray-lt); line-height:1.5;">Toyota, KIA, Nissan, Jeep, RAM, Dodge and more — all available through me.</div>
-      </div>
-
-      <div style="border-left:4px solid var(--gold); padding-left:16px;">
-        <div style="font-family:'Oswald',sans-serif; font-size:16px; color:var(--white); font-weight:600; text-transform:uppercase; margin-bottom:4px;">First-Time Buyers Welcome</div>
-        <div style="font-size:14px; color:var(--gray-lt); line-height:1.5;">I walk you through the whole process — no jargon, no pressure.</div>
-      </div>
-
-      <div style="border-left:4px solid var(--red); padding-left:16px;">
-        <div style="font-family:'Oswald',sans-serif; font-size:16px; color:var(--white); font-weight:600; text-transform:uppercase; margin-bottom:4px;">Zero Broker Fees</div>
-        <div style="font-size:14px; color:var(--gray-lt); line-height:1.5;">My consultation is 100% free. I get paid when you get a great deal.</div>
-      </div>
-
-      <div style="margin-top:8px; padding:20px; border:1px solid rgba(201,150,58,.3); background:rgba(201,150,58,.06);">
-        <div style="font-family:'Oswald',sans-serif; font-size:12px; color:var(--gold); letter-spacing:.15em; text-transform:uppercase; margin-bottom:6px;">Available Now</div>
-        <a href="tel:8888178898" style="display:block; font-family:'Oswald',sans-serif; font-size:22px; font-weight:700; color:var(--white); text-decoration:none; margin-bottom:12px;">(888) 817-8898</a>
-        <a href="#lead-form" style="display:block; background:var(--gold); color:var(--navy); font-family:'Oswald',sans-serif; font-size:14px; font-weight:700; letter-spacing:.1em; text-transform:uppercase; padding:13px 20px; text-decoration:none; text-align:center; transition:background .2s;">Book Free Consultation →</a>
-      </div>
-    </div>
-
   </div>
 
-  <!-- Bottom accent bar -->
-  <div style="height:5px; background:linear-gradient(90deg,var(--gold),var(--red),var(--gold)); margin-top:48px; position:relative; z-index:2;"></div>
+  <!-- STATS BAR: navy background -->
+  <div style="background:var(--navy);border-top:3px solid var(--gold);padding:32px 5%;display:flex;justify-content:center;gap:60px;flex-wrap:wrap;">
+    <div style="text-align:center;">
+      <div style="font-family:'Oswald',sans-serif;font-size:38px;font-weight:700;color:var(--gold);line-height:1;">9</div>
+      <div style="font-size:12px;color:var(--gray-lt);text-transform:uppercase;letter-spacing:.1em;margin-top:4px;">Brands Available</div>
+    </div>
+    <div style="text-align:center;">
+      <div style="font-family:'Oswald',sans-serif;font-size:38px;font-weight:700;color:var(--gold);line-height:1;">100+</div>
+      <div style="font-size:12px;color:var(--gray-lt);text-transform:uppercase;letter-spacing:.1em;margin-top:4px;">Families Helped</div>
+    </div>
+    <div style="text-align:center;">
+      <div style="font-family:'Oswald',sans-serif;font-size:38px;font-weight:700;color:var(--gold);line-height:1;">$0</div>
+      <div style="font-size:12px;color:var(--gray-lt);text-transform:uppercase;letter-spacing:.1em;margin-top:4px;">Broker Fee</div>
+    </div>
+    <div style="text-align:center;">
+      <div style="font-family:'Oswald',sans-serif;font-size:38px;font-weight:700;color:var(--gold);line-height:1;">Free</div>
+      <div style="font-size:12px;color:var(--gray-lt);text-transform:uppercase;letter-spacing:.1em;margin-top:4px;">Consultation</div>
+    </div>
+  </div>
+
 </section>
 
 <!-- TRUST STRIP -->
