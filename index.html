@@ -10,9 +10,9 @@
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
 :root {
-  --navy:    #0B1E3D;
-  --navy-mid:#112651;
-  --navy-lt: #1A3568;
+  --navy:    #1A3A6B;
+  --navy-mid:#1E4480;
+  --navy-lt: #2450A0;
   --gold:    #C9963A;
   --gold-lt: #E8B85A;
   --gold-pale:#F5E6C8;
@@ -959,24 +959,40 @@ footer {
     </div>
   </div>
 
-  <!-- PHOTO SECTION: Full width centered photo on white -->
-  <div style="background:var(--white);display:flex;flex-direction:column;align-items:center;padding:0;position:relative;">
+  <!-- PHOTO SECTION: Photo centered with brand logos on sides -->
+  <div style="background:var(--navy);display:flex;align-items:center;justify-content:center;padding:40px 3% 0;gap:0;position:relative;overflow:hidden;">
 
-    <!-- Red diagonal wave behind photo -->
-    <div style="position:absolute;top:0;left:0;right:0;height:50%;background:var(--navy);z-index:0;"></div>
+    <!-- LEFT: Brand logos group 1 (Toyota, Mazda, KIA, Hyundai, Nissan) -->
+    <div style="flex:1;display:flex;align-items:center;justify-content:center;padding:0 20px;opacity:.85;">
+      <img
+        src="car_brands_1.png"
+        alt="Toyota Mazda KIA Hyundai Nissan"
+        style="width:100%;max-width:420px;height:auto;object-fit:contain;filter:brightness(0) invert(1);opacity:.7;"
+      >
+    </div>
 
-    <!-- Photo centered -->
-    <div style="position:relative;z-index:2;display:inline-block;">
+    <!-- CENTER: Israel photo -->
+    <div style="flex-shrink:0;position:relative;z-index:2;display:flex;flex-direction:column;align-items:center;">
       <img
         src="israel-photo.jpg"
         alt="Israel Cabrera — Auto Expert"
-        style="display:block;width:min(560px,80vw);max-width:560px;height:auto;object-fit:cover;object-position:top center;box-shadow:0 24px 80px rgba(0,0,0,.35);"
+        style="display:block;width:min(560px,38vw);height:auto;object-fit:cover;object-position:top center;box-shadow:0 24px 80px rgba(0,0,0,.5);"
       >
-      <!-- Gold bottom bar over photo -->
-      <div style="background:var(--gold);padding:12px 24px;text-align:center;">
+      <!-- Gold bottom bar -->
+      <div style="background:var(--gold);width:100%;padding:12px 24px;text-align:center;">
         <div style="font-family:'Oswald',sans-serif;font-size:13px;color:var(--navy);letter-spacing:.2em;text-transform:uppercase;font-weight:700;">★ ★ ★ ★ ★ &nbsp;&nbsp; Sansone Auto Mall &nbsp;·&nbsp; Woodbridge, NJ</div>
       </div>
     </div>
+
+    <!-- RIGHT: Brand logos group 2 (Chrysler, Jeep, Dodge, RAM) -->
+    <div style="flex:1;display:flex;align-items:center;justify-content:center;padding:0 20px;opacity:.85;">
+      <img
+        src="car_brands_2.png"
+        alt="Chrysler Jeep Dodge RAM"
+        style="width:100%;max-width:420px;height:auto;object-fit:contain;filter:brightness(0) invert(1);opacity:.7;"
+      >
+    </div>
+
   </div>
 
   <!-- STATS BAR: navy background -->
