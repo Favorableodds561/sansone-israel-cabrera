@@ -147,7 +147,9 @@ nav {
   padding: 4px 12px;
   border: 1.5px solid var(--gray-lt);
   transition: all .2s;
-  cursor: default;
+  cursor: pointer;
+  text-decoration: none;
+  display: inline-block;
 }
 .brand-logo-item:hover { border-color: var(--gold); color: var(--gold); }
 
@@ -660,6 +662,7 @@ nav {
   border-bottom: 3px solid transparent;
   transition: all .2s;
   cursor: default;
+  scroll-margin-top: 90px;
 }
 .brand-card:hover { background: var(--navy-lt); border-bottom-color: var(--gold); }
 
@@ -870,7 +873,25 @@ footer {
 .footer-copy { font-size: 13px; color: var(--gray); }
 .footer-phone { font-family: 'Oswald', sans-serif; font-size: 18px; color: var(--gold); letter-spacing: .04em; text-decoration: none; }
 
-/* RESPONSIVE */
+/* ── GALLERY ── */
+.photo-gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 12px;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+.gallery-img {
+  width: 100%;
+  height: 300px;
+  object-fit: cover;
+  display: block;
+  transition: transform .3s;
+}
+
+/* ── RESPONSIVE ── */
+
+/* Tablet */
 @media (max-width: 960px) {
   .hero { grid-template-columns: 1fr; }
   .hero-right { height: 400px; }
@@ -883,6 +904,134 @@ footer {
   .help-grid, .testi-grid, .steps-grid { grid-template-columns: 1fr; }
   .footer-top { grid-template-columns: 1fr; gap: 32px; }
   .nav-links { display: none; }
+  .trust-strip { flex-wrap: wrap; justify-content: center; }
+  .trust-item { border-right: none; border-bottom: 1px solid rgba(11,30,61,.1); width: 50%; justify-content: center; }
+  .photo-gallery-grid { grid-template-columns: repeat(2, 1fr); }
+}
+
+/* Mobile */
+@media (max-width: 640px) {
+  /* Nav */
+  nav {
+    grid-template-columns: 1fr auto;
+    height: auto;
+    padding: 12px 4%;
+    gap: 10px;
+  }
+  .nav-links-wrap { display: none; }
+  .nav-cta { font-size: 13px; padding: 9px 16px; white-space: nowrap; }
+  .nav-logo-name { font-size: 18px; }
+
+  /* Alert bar */
+  .alert-bar { font-size: 12px; padding: 8px 14px; line-height: 1.5; }
+
+  /* Brand bar */
+  .brand-bar {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+    padding: 12px 4%;
+    overflow: visible;
+  }
+  .brand-bar-label {
+    border-right: none;
+    border-bottom: 1px solid var(--gray-lt);
+    padding-right: 0;
+    padding-bottom: 8px;
+    margin-right: 0;
+    margin-bottom: 0;
+    width: 100%;
+  }
+  .brand-logos {
+    gap: 8px;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+  }
+  .brand-logo-item { font-size: 12px; padding: 5px 10px; }
+
+  /* Hero */
+  .hero-left { padding: 48px 4% 40px; }
+  .hero-right { height: 280px; }
+  .hero-name { font-size: clamp(48px, 13vw, 72px); }
+  .hero-btns { flex-direction: column; align-items: stretch; }
+  .btn-red, .btn-gold-outline { text-align: center; justify-content: center; padding: 14px 20px; font-size: 14px; }
+  .hero-stats { gap: 20px; flex-wrap: wrap; }
+  .stat-n { font-size: 28px; }
+
+  /* Trust strip */
+  .trust-strip { flex-direction: column; }
+  .trust-item { width: 100%; border-right: none; border-bottom: 1px solid rgba(11,30,61,.1); padding: 12px 20px; }
+
+  /* How it works */
+  .how-section { padding: 60px 4%; }
+  .steps-grid { grid-template-columns: 1fr; }
+
+  /* About */
+  .about-photo-col { height: 260px; }
+  .about-content { padding: 40px 4%; }
+  .about-title { font-size: clamp(30px, 8vw, 48px); }
+
+  /* Who I help */
+  .help-section { padding: 60px 4%; }
+  .help-grid { grid-template-columns: 1fr; }
+  .help-card { padding: 28px 20px; }
+
+  /* Brands grid */
+  .brands-section { padding: 60px 4%; }
+  .brands-grid { grid-template-columns: repeat(2, 1fr); }
+  .brand-card { padding: 20px 12px; }
+  .brand-card-logo { font-size: 15px; }
+  .brand-card-type { font-size: 10px; }
+
+  /* Testimonials */
+  .testi-section { padding: 60px 4%; }
+  .testi-grid { grid-template-columns: 1fr; }
+
+  /* CTA / Form */
+  .cta-section { padding: 60px 4%; gap: 36px; }
+  .lead-form { padding: 32px 20px; }
+  .form-header { margin: -32px -20px 24px; padding: 20px 20px; }
+  .field-row { grid-template-columns: 1fr; }
+
+  /* Gallery images */
+  .gallery-grid img,
+  [style*="sale_"] img,
+  img[src*="sale_"] { height: 200px !important; width: 100% !important; object-fit: cover !important; }
+
+  /* Footer */
+  footer { padding: 40px 4%; }
+  .footer-top { gap: 24px; }
+  .footer-bottom { flex-direction: column; align-items: flex-start; gap: 8px; }
+  .footer-brand-name { font-size: 22px; }
+
+  /* Stats bar */
+  #stats-bar { flex-wrap: wrap; gap: 0; }
+  #stats-bar > div { width: 50%; }
+
+  /* Gallery grid fix */
+  [style*="grid-template-columns: repeat(4"] {
+    display: grid !important;
+    grid-template-columns: 1fr 1fr !important;
+  }
+
+  /* Gallery */
+  .photo-gallery-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 8px;
+  }
+  .gallery-img { height: 180px; }
+
+  /* Section headers */
+  .section-title { font-size: clamp(26px, 7vw, 40px); }
+  .section-header { margin-bottom: 36px; }
+}
+
+/* Extra small screens */
+@media (max-width: 380px) {
+  .brand-logos { gap: 6px; }
+  .brand-logo-item { font-size: 11px; padding: 4px 8px; }
+  .brands-grid { grid-template-columns: 1fr 1fr; }
+  .hero-name { font-size: 42px; }
 }
 </style>
 </head>
@@ -920,15 +1069,15 @@ footer {
 <div class="brand-bar">
   <span class="brand-bar-label">9 Brands Available</span>
   <div class="brand-logos">
-    <span class="brand-logo-item">Toyota</span>
-    <span class="brand-logo-item">Mazda</span>
-    <span class="brand-logo-item">KIA</span>
-    <span class="brand-logo-item">Hyundai</span>
-    <span class="brand-logo-item">Nissan</span>
-    <span class="brand-logo-item">Chrysler</span>
-    <span class="brand-logo-item">Jeep</span>
-    <span class="brand-logo-item">Dodge</span>
-    <span class="brand-logo-item">RAM</span>
+    <a href="#brand-toyota" class="brand-logo-item">Toyota</a>
+    <a href="#brand-mazda" class="brand-logo-item">Mazda</a>
+    <a href="#brand-kia" class="brand-logo-item">KIA</a>
+    <a href="#brand-hyundai" class="brand-logo-item">Hyundai</a>
+    <a href="#brand-nissan" class="brand-logo-item">Nissan</a>
+    <a href="#brand-chrysler" class="brand-logo-item">Chrysler</a>
+    <a href="#brand-jeep" class="brand-logo-item">Jeep</a>
+    <a href="#brand-dodge" class="brand-logo-item">Dodge</a>
+    <a href="#brand-ram" class="brand-logo-item">RAM</a>
   </div>
 </div>
 
@@ -1140,15 +1289,15 @@ footer {
     <h2 class="section-title">Access to <span>9 Major Brands</span></h2>
   </div>
   <div class="brands-grid">
-    <div class="brand-card"><div class="brand-card-logo">Toyota</div><div class="brand-card-type">Sedans · SUVs · Trucks</div></div>
-    <div class="brand-card"><div class="brand-card-logo">Mazda</div><div class="brand-card-type">Sedans · SUVs · Crossovers</div></div>
-    <div class="brand-card"><div class="brand-card-logo">KIA</div><div class="brand-card-type">Sedans · SUVs · EVs</div></div>
-    <div class="brand-card"><div class="brand-card-logo">Hyundai</div><div class="brand-card-type">Sedans · SUVs · EVs</div></div>
-    <div class="brand-card"><div class="brand-card-logo">Nissan</div><div class="brand-card-type">Sedans · SUVs · Trucks</div></div>
-    <div class="brand-card"><div class="brand-card-logo">Chrysler</div><div class="brand-card-type">Minivans · Sedans</div></div>
-    <div class="brand-card"><div class="brand-card-logo">Jeep</div><div class="brand-card-type">SUVs · Off-Road</div></div>
-    <div class="brand-card"><div class="brand-card-logo">Dodge</div><div class="brand-card-type">Muscle · SUVs</div></div>
-    <div class="brand-card"><div class="brand-card-logo">RAM</div><div class="brand-card-type">Trucks · Commercial</div></div>
+    <div class="brand-card" id="brand-toyota"><div class="brand-card-logo">Toyota</div><div class="brand-card-type">Sedans · SUVs · Trucks</div></div>
+    <div class="brand-card" id="brand-mazda"><div class="brand-card-logo">Mazda</div><div class="brand-card-type">Sedans · SUVs · Crossovers</div></div>
+    <div class="brand-card" id="brand-kia"><div class="brand-card-logo">KIA</div><div class="brand-card-type">Sedans · SUVs · EVs</div></div>
+    <div class="brand-card" id="brand-hyundai"><div class="brand-card-logo">Hyundai</div><div class="brand-card-type">Sedans · SUVs · EVs</div></div>
+    <div class="brand-card" id="brand-nissan"><div class="brand-card-logo">Nissan</div><div class="brand-card-type">Sedans · SUVs · Trucks</div></div>
+    <div class="brand-card" id="brand-chrysler"><div class="brand-card-logo">Chrysler</div><div class="brand-card-type">Minivans · Sedans</div></div>
+    <div class="brand-card" id="brand-jeep"><div class="brand-card-logo">Jeep</div><div class="brand-card-type">SUVs · Off-Road</div></div>
+    <div class="brand-card" id="brand-dodge"><div class="brand-card-logo">Dodge</div><div class="brand-card-type">Muscle · SUVs</div></div>
+    <div class="brand-card" id="brand-ram"><div class="brand-card-logo">RAM</div><div class="brand-card-type">Trucks · Commercial</div></div>
     <div class="brand-card" style="background:rgba(201,150,58,.08); display:flex; align-items:center; justify-content:center;">
       <div style="text-align:center;">
         <div style="font-family:'Oswald',sans-serif; font-size:13px; color:var(--gold); letter-spacing:.1em; text-transform:uppercase;">More options available</div>
@@ -1380,34 +1529,34 @@ function toggleFaq(btn) {
   </div>
 
   <!-- Photo Grid — 8 photos, clean 4-column layout -->
-  <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:12px;max-width:1400px;margin:0 auto;">
+  <div class="photo-gallery-grid">
 
     <!-- Row 1 — sale_1, sale_3, sale_4, sale_5 -->
     <div style="overflow:hidden;border-bottom:4px solid var(--gold);">
-      <img src="sale_1.jpg" alt="Happy customer at Sansone Auto Mall" style="width:100%;height:300px;object-fit:cover;object-position:center 20%;display:block;transition:transform .3s;" onmouseover="this.style.transform='scale(1.04)'" onmouseout="this.style.transform='scale(1)'">
+      <img src="sale_1.jpg" alt="Happy customer at Sansone Auto Mall" class="gallery-img" style="object-position:center 20%;" onmouseover="this.style.transform='scale(1.04)'" onmouseout="this.style.transform='scale(1)'">
     </div>
     <div style="overflow:hidden;border-bottom:4px solid var(--red);">
-      <img src="sale_3.jpg" alt="Happy customer at Sansone Auto Mall" style="width:100%;height:300px;object-fit:cover;object-position:top center;display:block;transition:transform .3s;" onmouseover="this.style.transform='scale(1.04)'" onmouseout="this.style.transform='scale(1)'">
+      <img src="sale_3.jpg" alt="Happy customer at Sansone Auto Mall" class="gallery-img" style="object-position:top center;" onmouseover="this.style.transform='scale(1.04)'" onmouseout="this.style.transform='scale(1)'">
     </div>
     <div style="overflow:hidden;border-bottom:4px solid var(--gold);">
-      <img src="sale_4.jpg" alt="Happy customer at Sansone Auto Mall" style="width:100%;height:300px;object-fit:cover;object-position:center 15%;display:block;transition:transform .3s;" onmouseover="this.style.transform='scale(1.04)'" onmouseout="this.style.transform='scale(1)'">
+      <img src="sale_4.jpg" alt="Happy customer at Sansone Auto Mall" class="gallery-img" style="object-position:center 15%;" onmouseover="this.style.transform='scale(1.04)'" onmouseout="this.style.transform='scale(1)'">
     </div>
     <div style="overflow:hidden;border-bottom:4px solid var(--red);">
-      <img src="sale_5.jpg" alt="Happy customer at Sansone Auto Mall" style="width:100%;height:300px;object-fit:cover;object-position:center 25%;display:block;transition:transform .3s;" onmouseover="this.style.transform='scale(1.04)'" onmouseout="this.style.transform='scale(1)'">
+      <img src="sale_5.jpg" alt="Happy customer at Sansone Auto Mall" class="gallery-img" style="object-position:center 25%;" onmouseover="this.style.transform='scale(1.04)'" onmouseout="this.style.transform='scale(1)'">
     </div>
 
     <!-- Row 2 — sale_7, sale_8, sale_9, sale_10 -->
     <div style="overflow:hidden;border-bottom:4px solid var(--gold);">
-      <img src="sale_7.jpg" alt="Happy customer at Sansone Auto Mall" style="width:100%;height:300px;object-fit:cover;object-position:center 20%;display:block;transition:transform .3s;" onmouseover="this.style.transform='scale(1.04)'" onmouseout="this.style.transform='scale(1)'">
+      <img src="sale_7.jpg" alt="Happy customer at Sansone Auto Mall" class="gallery-img" style="object-position:center 20%;" onmouseover="this.style.transform='scale(1.04)'" onmouseout="this.style.transform='scale(1)'">
     </div>
     <div style="overflow:hidden;border-bottom:4px solid var(--red);">
-      <img src="sale_8.jpg" alt="Happy customer at Sansone Auto Mall" style="width:100%;height:300px;object-fit:cover;object-position:center 15%;display:block;transition:transform .3s;" onmouseover="this.style.transform='scale(1.04)'" onmouseout="this.style.transform='scale(1)'">
+      <img src="sale_8.jpg" alt="Happy customer at Sansone Auto Mall" class="gallery-img" style="object-position:center 15%;" onmouseover="this.style.transform='scale(1.04)'" onmouseout="this.style.transform='scale(1)'">
     </div>
     <div style="overflow:hidden;border-bottom:4px solid var(--gold);">
-      <img src="sale_9.jpg" alt="Happy customer at Sansone Auto Mall" style="width:100%;height:300px;object-fit:cover;object-position:center 20%;display:block;transition:transform .3s;" onmouseover="this.style.transform='scale(1.04)'" onmouseout="this.style.transform='scale(1)'">
+      <img src="sale_9.jpg" alt="Happy customer at Sansone Auto Mall" class="gallery-img" style="object-position:center 20%;" onmouseover="this.style.transform='scale(1.04)'" onmouseout="this.style.transform='scale(1)'">
     </div>
     <div style="overflow:hidden;border-bottom:4px solid var(--red);">
-      <img src="sale_10.jpg" alt="Happy customer at Sansone Auto Mall" style="width:100%;height:300px;object-fit:cover;object-position:center 20%;display:block;transition:transform .3s;" onmouseover="this.style.transform='scale(1.04)'" onmouseout="this.style.transform='scale(1)'">
+      <img src="sale_10.jpg" alt="Happy customer at Sansone Auto Mall" class="gallery-img" style="object-position:center 20%;" onmouseover="this.style.transform='scale(1.04)'" onmouseout="this.style.transform='scale(1)'">
     </div>
 
   </div>
