@@ -1065,6 +1065,16 @@ footer {
   </div>
 </nav>
 
+<!-- MOBILE INVENTORY LINK (hidden on desktop) -->
+<a href="inventory.html" id="mobile-inventory-bar" style="display:none;background:var(--navy-mid);color:var(--gold-lt);font-family:'Oswald',sans-serif;font-size:14px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;text-decoration:none;text-align:center;padding:11px 16px;border-bottom:2px solid var(--gold);justify-content:center;align-items:center;gap:8px;">
+  🚗 Browse Vehicle Inventory →
+</a>
+<style>
+@media (max-width: 768px) {
+  #mobile-inventory-bar { display:flex !important; }
+}
+</style>
+
 <!-- BRAND BAR -->
 <div class="brand-bar">
   <span class="brand-bar-label">9 Brands Available</span>
@@ -1720,4 +1730,10 @@ function submitForm() {
 // Smooth scroll for all anchor links
 document.querySelectorAll('a[href^="#"]').forEach(a => {
   a.addEventListener('click', e => {
-    const target = document.q
+    const target = document.querySelector(a.getAttribute('href'));
+    if (target) { e.preventDefault(); target.scrollIntoView({ behavior: 'smooth', block: 'start' }); }
+  });
+});
+</script>
+</body>
+</html>
