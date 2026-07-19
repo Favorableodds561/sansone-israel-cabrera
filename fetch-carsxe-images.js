@@ -1,170 +1,171 @@
 #!/usr/bin/env node
 /**
- * fetch-carsxe-images.js
- * -----------------------
- * Fetches one hero image per (year + model + trim) from the CarsXE Images API
- * and writes them into inventory.html, between the CARSXE_IMAGES_START / _END
- * markers, as a JS object keyed by "YEAR|MODEL|TRIM".
+ * fetch-carsxe-images.js — one-time batch download of vehicle images from CarsXE.
  *
- * The key format matches what getVehiclePhoto() in inventory.html looks up,
- * so a fetched image becomes the hero photo for that exact vehicle (with the
- * imagin.studio shot as automatic fallback if the URL ever fails).
+ * Usage (from the site root folder):
+ *     CARSXE_KEY=your_key_here node fetch-carsxe-images.js
+ * or on Windows (PowerShell):
+ *     $env:CARSXE_KEY="your_key_here"; node fetch-carsxe-images.js
  *
- * USAGE (run from the same folder as inventory.html):
- *     CARSXE_KEY=cxe_live_xxxxx node fetch-carsxe-images.js
+ * What it does:
+ *  - Makes ONE CarsXE API call per unique model below (55 total, within your 100-call cap).
+ *  - Downloads the best front-3/4 image to vehicle-images/{make}-{model}.jpg
+ *    (image downloads themselves do NOT count against the API cap — only the
+ *    /images metadata call does).
+ *  - Skips any model whose file already exists, so re-running only retries failures
+ *    and never wastes calls.
+ *  - Prints a summary of successes/failures at the end.
  *
- * Options:
- *     --download   Also download each image into ./vehicle-images/ and point
- *                  the map at the local copy (recommended for production: the
- *                  CarsXE links are third-party and can change or expire).
- *     --dry-run    Fetch + report, but DON'T modify inventory.html.
- *
- * Requires Node 18+ (uses the built-in global fetch).
+ * SECURITY: do not hard-code the key in this file or commit it to the repo —
+ * GitHub Pages repos are public. Pass it via the CARSXE_KEY env var each run.
  */
 
-'use strict';
-const fs   = require('fs');
+const fs = require('fs');
 const path = require('path');
+const https = require('https');
 
-// ── Config ────────────────────────────────────────────────────────────────
 const KEY = process.env.CARSXE_KEY;
-const HTML_FILE   = path.join(__dirname, 'inventory.html');
-const IMG_DIR     = path.join(__dirname, 'vehicle-images');
-const THROTTLE_MS = 300;          // pause between API calls (be kind to the API / your quota)
-const LICENSE     = 'ShareCommercially'; // safest license for a live commercial site
-const DOWNLOAD = process.argv.includes('--download');
-const DRY_RUN  = process.argv.includes('--dry-run');
+if (!KEY) {
+  console.error('ERROR: set the CARSXE_KEY environment variable first.');
+  process.exit(1);
+}
 
-// ── What to fetch ───────────────────────────────────────────────────────────
-// siteModel  = the model string EXACTLY as it appears in inventory.html
-//              (it forms the lookup key "YEAR|siteModel|TRIM").
-// make/model = the CarsXE query params (lowercase, as CarsXE expects).
-// Add more objects here later to cover other models/brands.
-const TARGETS = [
-  {
-    siteModel: 'Corolla',
-    make:  'toyota',
-    model: 'corolla',
-    years: [2020, 2021, 2022, 2023, 2024, 2025],
-    trims: ['L', 'LE', 'SE', 'XLE', 'XSE', 'Hybrid LE', 'Hybrid SE', 'Hybrid XLE'],
-  },
+const OUT_DIR = path.join(__dirname, 'vehicle-images');
+if (!fs.existsSync(OUT_DIR)) fs.mkdirSync(OUT_DIR);
+
+// Priority order: index.html brand cards first, then inventory top-to-bottom.
+// [make, modelFamily (used in filename), CarsXE model query, preferred year]
+const MODELS = [
+  // ── index.html brand cards (highest visibility) ──
+  ['mazda', 'cx-5', 'CX-5', 2025],
+  ['ram', '1500', '1500', 2025],
+  ['kia', 'telluride', 'Telluride', 2025],
+  ['hyundai', 'palisade', 'Palisade', 2025],
+  ['nissan', 'rogue', 'Rogue', 2025],
+  ['jeep', 'wrangler', 'Wrangler', 2025],
+  ['dodge', 'charger', 'Charger', 2025],
+  ['chrysler', 'pacifica', 'Pacifica', 2025],
+  // ── inventory: Toyota (lead brand) ──
+  ['toyota', 'corolla', 'Corolla', 2025],
+  ['toyota', 'camry', 'Camry', 2025],
+  ['toyota', 'crown', 'Crown', 2025],
+  ['toyota', 'c-hr', 'C-HR', 2025],
+  ['toyota', 'corolla-cross', 'Corolla Cross', 2025],
+  ['toyota', 'rav4', 'RAV4', 2025],
+  ['toyota', 'highlander', 'Highlander', 2025],
+  ['toyota', 'grand-highlander', 'Grand Highlander', 2025],
+  ['toyota', 'sequoia', 'Sequoia', 2025],
+  ['toyota', 'tacoma', 'Tacoma', 2025],
+  ['toyota', 'tundra', 'Tundra', 2025],
+  // ── Mazda ──
+  ['mazda', '3', 'Mazda3', 2025],
+  ['mazda', 'cx-30', 'CX-30', 2025],
+  ['mazda', 'cx-50', 'CX-50', 2025],
+  ['mazda', 'cx-70', 'CX-70', 2025],
+  ['mazda', 'cx-90', 'CX-90', 2025],
+  // ── Kia ──
+  ['kia', 'k4', 'K4', 2025],
+  ['kia', 'k5', 'K5', 2025],
+  ['kia', 'forte', 'Forte', 2024],
+  ['kia', 'soul', 'Soul', 2025],
+  ['kia', 'seltos', 'Seltos', 2025],
+  ['kia', 'sportage', 'Sportage', 2025],
+  ['kia', 'sorento', 'Sorento', 2025],
+  ['kia', 'carnival', 'Carnival', 2025],
+  // ── Hyundai ──
+  ['hyundai', 'elantra', 'Elantra', 2025],
+  ['hyundai', 'sonata', 'Sonata', 2025],
+  ['hyundai', 'venue', 'Venue', 2025],
+  ['hyundai', 'kona', 'Kona', 2025],
+  ['hyundai', 'tucson', 'Tucson', 2025],
+  ['hyundai', 'santa-fe', 'Santa Fe', 2025],
+  // ── Nissan ──
+  ['nissan', 'versa', 'Versa', 2025],
+  ['nissan', 'sentra', 'Sentra', 2025],
+  ['nissan', 'altima', 'Altima', 2025],
+  ['nissan', 'maxima', 'Maxima', 2024],
+  ['nissan', 'kicks', 'Kicks', 2025],
+  ['nissan', 'murano', 'Murano', 2025],
+  ['nissan', 'pathfinder', 'Pathfinder', 2025],
+  ['nissan', 'armada', 'Armada', 2025],
+  ['nissan', 'frontier', 'Frontier', 2025],
+  // ── Jeep ──
+  ['jeep', 'compass', 'Compass', 2025],
+  ['jeep', 'cherokee', 'Cherokee', 2024],
+  ['jeep', 'grand-cherokee', 'Grand Cherokee', 2025],
+  ['jeep', 'gladiator', 'Gladiator', 2025],
+  // ── Dodge ──
+  ['dodge', 'challenger', 'Challenger', 2024],
+  ['dodge', 'durango', 'Durango', 2025],
+  ['dodge', 'hornet', 'Hornet', 2025],
+  // ── Chrysler ──
+  ['chrysler', 'voyager', 'Voyager', 2025],
 ];
 
-// ── Helpers ─────────────────────────────────────────────────────────────────
+function get(url) {
+  return new Promise((resolve, reject) => {
+    https.get(url, { headers: { 'User-Agent': 'askforisrael-image-fetch/1.0' } }, (res) => {
+      if (res.statusCode >= 300 && res.statusCode < 400 && res.headers.location) {
+        return resolve(get(res.headers.location)); // follow redirect
+      }
+      const chunks = [];
+      res.on('data', (c) => chunks.push(c));
+      res.on('end', () => resolve({ status: res.statusCode, body: Buffer.concat(chunks) }));
+    }).on('error', reject);
+  });
+}
+
 const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
 
-function slug(s) {
-  return String(s).toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '');
-}
+(async () => {
+  let apiCalls = 0, ok = 0, skipped = 0;
+  const failures = [];
 
-// Try the request with trim+year first, then loosen (trim off, then year off)
-// so e.g. "Hybrid LE" still returns *something* if CarsXE has no exact match.
-async function fetchImage(make, model, year, trim) {
-  const attempts = [
-    { year, trim },   // most specific
-    { year },         // drop trim
-    {},               // drop year + trim (generic model photo)
-  ];
+  for (const [make, slug, modelQuery, year] of MODELS) {
+    const outFile = path.join(OUT_DIR, `${make}-${slug}.jpg`);
+    if (fs.existsSync(outFile) && fs.statSync(outFile).size > 5000) {
+      skipped++;
+      console.log(`SKIP  ${make}-${slug}.jpg (already downloaded)`);
+      continue;
+    }
 
-  for (const extra of attempts) {
-    const url = new URL('https://api.carsxe.com/images');
-    url.searchParams.set('key', KEY);
-    url.searchParams.set('make', make);
-    url.searchParams.set('model', model);
-    if (extra.year) url.searchParams.set('year', String(extra.year));
-    if (extra.trim) url.searchParams.set('trim', extra.trim);
-    url.searchParams.set('license', LICENSE);
-    url.searchParams.set('format', 'json');
+    const apiURL = `https://api.carsxe.com/images?key=${KEY}` +
+      `&make=${encodeURIComponent(make)}` +
+      `&model=${encodeURIComponent(modelQuery)}` +
+      `&year=${year}&angle=front&photoType=exterior&size=Large&format=json`;
 
     try {
-      const res  = await fetch(url);
-      const data = await res.json();
-      const img  = data && data.success && Array.isArray(data.images) && data.images[0];
-      if (img && img.link) {
-        return { link: img.link, loosened: !extra.trim || !extra.year };
-      }
-    } catch (err) {
-      console.warn(`    ! request error: ${err.message}`);
+      apiCalls++;
+      const res = await get(apiURL);
+      if (res.status !== 200) throw new Error(`API HTTP ${res.status}`);
+      const data = JSON.parse(res.body.toString('utf8'));
+      const images = data.images || data.data || [];
+      if (!images.length) throw new Error('no images returned');
+
+      // Prefer a landscape image with decent resolution
+      const pick = images.find((i) => (i.width || 0) >= 800) || images[0];
+      const imgURL = pick.link || pick.url || pick.thumbnailLink;
+      if (!imgURL) throw new Error('no usable image URL in response');
+
+      const img = await get(imgURL);
+      if (img.status !== 200 || img.body.length < 5000) throw new Error(`image download HTTP ${img.status}`);
+      fs.writeFileSync(outFile, img.body);
+      ok++;
+      console.log(`OK    ${make}-${slug}.jpg  (${Math.round(img.body.length / 1024)} KB)  [API calls used: ${apiCalls}]`);
+    } catch (e) {
+      failures.push([make, slug, e.message]);
+      console.log(`FAIL  ${make}-${slug}: ${e.message}`);
     }
-    await sleep(THROTTLE_MS);
-  }
-  return null;
-}
-
-async function downloadTo(localPath, link) {
-  const res = await fetch(link);
-  if (!res.ok) throw new Error(`HTTP ${res.status}`);
-  const buf = Buffer.from(await res.arrayBuffer());
-  fs.writeFileSync(localPath, buf);
-}
-
-// ── Main ─────────────────────────────────────────────────────────────────────
-(async () => {
-  if (!KEY) {
-    console.error('ERROR: set your key first, e.g.\n  CARSXE_KEY=cxe_live_xxxxx node fetch-carsxe-images.js');
-    process.exit(1);
-  }
-  if (!fs.existsSync(HTML_FILE)) {
-    console.error(`ERROR: inventory.html not found at ${HTML_FILE}`);
-    process.exit(1);
-  }
-  if (DOWNLOAD && !fs.existsSync(IMG_DIR)) fs.mkdirSync(IMG_DIR, { recursive: true });
-
-  const map = {};
-  let ok = 0, loose = 0, miss = 0;
-
-  for (const t of TARGETS) {
-    for (const year of t.years) {
-      for (const trim of t.trims) {
-        const key = `${year}|${t.siteModel}|${trim}`;
-        process.stdout.write(`${key} ... `);
-
-        const found = await fetchImage(t.make, t.model, year, trim);
-        if (!found) { console.log('no image'); miss++; await sleep(THROTTLE_MS); continue; }
-
-        let value = found.link;
-        if (DOWNLOAD) {
-          const file = `${slug(t.siteModel)}-${year}-${slug(trim)}.jpg`;
-          try {
-            await downloadTo(path.join(IMG_DIR, file), found.link);
-            value = `vehicle-images/${file}`;
-          } catch (err) {
-            console.warn(`(download failed: ${err.message}, keeping remote URL) `);
-          }
-        }
-
-        map[key] = value;
-        console.log(found.loosened ? 'ok (loosened match)' : 'ok');
-        found.loosened ? loose++ : ok++;
-        await sleep(THROTTLE_MS);
-      }
-    }
+    await sleep(400); // be polite / avoid rate limiting
   }
 
-  const total = ok + loose + miss;
-  console.log(`\nDone: ${ok} exact, ${loose} loosened, ${miss} missing  (of ${total})`);
-
-  if (DRY_RUN) { console.log('--dry-run: inventory.html NOT modified.'); return; }
-
-  // Build the replacement block.
-  const lines = Object.keys(map).sort().map(
-    (k) => `  ${JSON.stringify(k)}: ${JSON.stringify(map[k])}`
-  );
-  const block =
-    '// CARSXE_IMAGES_START\n' +
-    'var CARSXE_IMAGES = {\n' +
-    lines.join(',\n') + (lines.length ? '\n' : '') +
-    '};\n' +
-    '// CARSXE_IMAGES_END';
-
-  const html = fs.readFileSync(HTML_FILE, 'utf8');
-  const re = /\/\/ CARSXE_IMAGES_START[\s\S]*?\/\/ CARSXE_IMAGES_END/;
-  if (!re.test(html)) {
-    console.error('ERROR: could not find the CARSXE_IMAGES_START/END markers in inventory.html.');
-    process.exit(1);
+  console.log('\n──────── SUMMARY ────────');
+  console.log(`API calls used this run: ${apiCalls}`);
+  console.log(`Downloaded: ${ok}   Skipped (already had): ${skipped}   Failed: ${failures.length}`);
+  if (failures.length) {
+    console.log('\nFailed models (re-run the script to retry just these):');
+    failures.forEach(([m, s, msg]) => console.log(`  - ${m} ${s}: ${msg}`));
+    console.log('\nTip: if a model keeps failing, try editing its year (e.g. 2024) or model');
+    console.log('spelling in the MODELS list above, then re-run — existing files are skipped.');
   }
-
-  fs.writeFileSync(HTML_FILE + '.bak', html);          // safety backup
-  fs.writeFileSync(HTML_FILE, html.replace(re, block));
-  console.log(`Wrote ${Object.keys(map).length} images into inventory.html (backup at inventory.html.bak).`);
 })();
