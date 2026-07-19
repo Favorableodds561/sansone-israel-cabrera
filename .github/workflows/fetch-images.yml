@@ -1,0 +1,34 @@
+name: Fetch CarsXE vehicle images
+
+# Runs only when you manually click "Run workflow" — never automatically,
+# so it can't burn API calls on its own.
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: write   # allows the workflow to commit the images back to the repo
+
+jobs:
+  fetch:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out the repo
+        uses: actions/checkout@v4
+
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Run the image fetch script
+        env:
+          CARSXE_KEY: ${{ secrets.CARSXE_KEY }}
+        run: node fetch-carsxe-images.js
+
+      - name: Commit downloaded images
+        run: |
+          git config user.name "github-actions"
+          git config user.email "actions@github.com"
+          git add vehicle-images/
+          git diff --cached --quiet && echo "No new images to commit" || git commit -m "Add CarsXE vehicle images"
+          git push
